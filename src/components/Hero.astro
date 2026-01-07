@@ -3,104 +3,73 @@ import GitHub from "./icons/GitHub.astro";
 import LinkedIn from "./icons/LinkedIn.astro";
 import Link_A from "./ui/Link_A.astro";
 import Code from "./icons/Code.astro";
+import Skill_Object from "./ui/Skill_Object.astro";
 ---
 
 <section
   id="hero"
-  class="relative w-full mx-auto max-w-7xl sm:px-6 lg:px-8 md:h-[80vh] h-fit flex items-center
-   justify-center "
+  class="relative w-full mx-auto max-w-7xl sm:px-6 lg:px-8 md:h-[80vh] h-[90vh] flex items-center
+   justify-center"
 >
   <div class="w-full max-w-4xl mx-auto">
     <div
-      class="bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-800/50
-    overflow-hidden transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg
-    hover:shadow-blue-500/5 p-4 md:p-10"
+      class="bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50
+    overflow-hidden transition-all duration-300 hover:border-boolean/30 hover:shadow-lg
+    hover:shadow--boolean/5 p-4 md:p-10"
     >
       <div class="mb-8">
         <div class="flex items-center gap-1 md:gap-4 mb-2">
-          <Code class="h-3 w-3 md:h-4 md:w-4 text-blue-400" />
-          <span class="title text-xs md:text-lg font-mono text-blue-400"
-            >console.log('Hola Mundo! 👋')</span
+          <Code class="h-2 w-2 md:h-3 md:w-3 text-object-global" />
+          <span class="title text-[.9rem] font-mono text-variable"
+            >console.<span class="text-function">log(</span><span
+              class="text-[#CE9178] text-[.9rem]">"Hola Mundo! 👋"</span
+            ><span class="text-function">)</span></span
           >
         </div>
 
         <h1
-          class="subtitle text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 mb-4"
+          class="subtitle text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg h-20"
         >
           Hola, Soy George
         </h1>
 
-        <div
-          class="subtitle text-sm md:text-2xl font-medium text-gray-300 mb-6"
-        >
+        <div class="subtitle text-md font-medium  mb-6">
           <span class="inline-flex items-center gap-[2px]">
-            <span class="text-blue-400 mr-1">const</span>
-            <span class="text-purple-400">rol</span>
-            <span class="text-gray-400">=</span>
-            <span class="text-yellow-300 mr-1">'Desarrollador Frontend'</span>
+            <span class="text-boolean mr-1">const</span>
+            <span class="text-variable">rol</span>
+            <span class="text-text-default/50">=</span>
+            <span class="text-[#CE9178] mr-1">'Desarrollador Frontend'</span>
           </span>
         </div>
-
-        <div class="relative group">
-          <div
-            class="rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"
-          >
-          </div>
-          <div
-            class="relative bg-gray-900/80 border border-gray-800/50 rounded-lg p-2"
-          >
-            <div class="text-md font-medium text-white">
-              <span class="text-blue-400">//</span>
-              <span class="text-gray-300">Soy un</span>
-              <span class="text-yellow-300 font-semibold"
-                >Tecnólogo en Desarrollo de Software</span
-              >
-            </div>
-            <div class="text-xs md:text-sm text-gray-300 pl-6 mt-2">
-              <span class="text-blue-400">//</span>
-              <span class="text-gray-400">Con enfoque en</span>
-              <span class="text-blue-300 font-medium">Frontend</span>
-            </div>
-            <div class="text-xs md:text-sm text-gray-400 pl-6 leading-relaxed mt-2">
-              <div>
-                <span class="text-blue-400">//</span> Apasionado por crear interfaces
-                modernas y eficientes,
-              </div>
-              <div>
-                <span class="text-blue-400">//</span> Combinando diseño, rendimiento
-                y buenas prácticas.
-              </div>
-            </div>
-          </div>
-        </div>
+        <Skill_Object />
       </div>
     </div>
 
     <div class="flex flex-wrap items-center gap-2 mt-2">
       <Link_A
-        classStyle="links flex items-center gap-x-4 text-sm md:px-6 px-2.5 py-2.5 bg-gray-800 text-white font-semibold rounded-md hover:bg-gray-700 hover:scale-105 transition-all duration-200"
+        classStyle="group links flex items-center gap-x-4 text-sm md:px-6 px-2.5 py-2.5 bg-sidebar-bg text-text-default font-semibold rounded-md hover:bg-sidebar-bg/80 hover:scale-105 transition-all duration-200"
         href="https://www.linkedin.com/in/georgecontreras241/"
         title="Mi LinkedIn"
         aria-label="Visitar Mi LinkedIn"
       >
         <LinkedIn
-          class="md:w-4 md:h-4 w-4 h-4 transition-transform duration-200 hover:scale-110"
+          class="md:w-4 md:h-4 w-4 h-4 transition-transform duration-200 group-hover:scale-120 transition-all"
         />
         <span class="md:flex hidden">Linkedin</span>
       </Link_A>
       <Link_A
-        classStyle="links flex items-center gap-x-4 text-sm md:px-6 px-2.5 py-2.5 bg-gray-800 text-white font-semibold rounded-md hover:cursor-pointer hover:bg-gray-700 hover:scale-105 transition-all duration-200"
+        classStyle="group links flex items-center gap-x-4 text-sm md:px-6 px-2.5 py-2.5 bg-sidebar-bg text--default font-semibold rounded-md hover:cursor-pointer hover:bg-lor-sidebar-bg)]/80 hover:scale-105 transition-all duration-200"
         href="https://github.com/GeorgeContreras241"
         title="Git Hub"
         aria-label="Visitar Git Hub"
       >
         <GitHub
-          class="md:w-4 md:h-4 w-4 h-4 transition-transform duration-200 hover:scale-110"
+          class="md:w-4 md:h-4 w-4 h-4 transition-transform duration-200 group-hover:scale-120 transition-all"
         />
         <span class="md:flex hidden">Git Hub</span>
       </Link_A>
       <a
-        class="links md:px-6 px-2.5 py-2.5 bg-[#8fe3ff] text-xs md:text-[15px] text-black font-semibold rounded-md ml-auto hover:cursor-pointer hover:bg-[#8fe3ff] 
+        class="links md:px-6 px-2.5 py-2.5 bg-variable text-xs md:text-[15px] text-editor-bg font-semibold rounded-md ml-auto hover:cursor-pointer hover:brightness-110
         hover:scale-105 transition-all duration-200"
         href="./CV.pdf"
         target="_blank"

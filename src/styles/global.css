@@ -5,12 +5,37 @@
   text-shadow: 0 0 80px #00cfff, 0 0 5px #00cfff, 0 0 20px #00cfff,
     0 0 0 #fdfdfd;
 }
-html{
+
+html {
   scroll-behavior: smooth;
   font-family: 'Onest Variable', system-ui, sans-serif;
 
 }
 
-@view-transition{
+@theme {
+  /* Fondo */
+  --color-editor-bg: oklch(0.23 0 0);            /* #1E1E1E */
+  --color-sidebar-bg: oklch(0.27 0 0);           /* #252526 */
+
+  /* Texto base */
+  --color-text-default: oklch(0.84 0 0);         /* #D4D4D4 */
+
+  /* JS / TS tokens */
+  --color-object-global: oklch(0.78 0.11 190);   /* console → #4EC9B0 */
+  --color-function: oklch(0.83 0.12 95);         /* funciones / log → #DCDCAA */
+  --color-variable: oklch(0.79 0.13 230);        /* variables → #9CDCFE */
+  --color-keyword: oklch(0.72 0.14 310);         /* const, return → #C586C0 */
+  --color-string: oklch(0.70 0.16 45);           /* strings → #CE9178 #CE9178*/
+  --color-number: oklch(0.76 0.13 145);          /* números → #B5CEA8 */
+  --color-boolean: oklch(0.70 0.15 255);         /* true/false → #569CD6 */
+  --color-comment: oklch(0.60 0.10 145);         /* comentarios → #6A9955 */
+
+  /* UI */
+  --color-selection-bg: oklch(0.40 0.12 245);    /* selección → #264F78 */
+  --color-statusbar-bg: oklch(0.55 0.18 255);    /* status bar → #007ACC */
+}
+
+
+@view-transition {
   navegation: auto;
 }

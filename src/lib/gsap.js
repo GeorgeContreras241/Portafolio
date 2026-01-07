@@ -6,28 +6,12 @@ gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrollTrigger);
 
 
-let mouseX = 0, mouseY = 0;
-let posX = 0, posY = 0;
-
-// Actualizar coordenadas del mouse
-window.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-gsap.ticker.add(() => {
-    posX += (mouseX - posX) * 0.15;
-    posY += (mouseY - posY) * 0.15;
-    gsap.set(".pointer_mouse", { x: posX, y: posY });
-  });
-  
-
 const tl = gsap.timeline({
   defaults: {
     duration: 0.6,
     ease: "power2.out",
     y: 10,
-    opacity: 0,
+    opacity: 0
   },
 });
 
@@ -40,7 +24,7 @@ tl
     y: 10,
     opacity: 0,
     duration: 0.4,
-    ease: "power2.out"
+    ease: "power2.out",
   })
   // Main heading
   .from("h1.subtitle", {
@@ -48,14 +32,15 @@ tl
     opacity: 0,
     duration: 0.5,
     ease: "back.out(2.5)",
-    scale: 0.95
+    scale: 0.95,
+
   }, "-=.2")
   // Role text
   .from("div.subtitle", {
     y: 15,
     opacity: 0,
     duration: 0.4,
-    ease: "power2.out"
+    ease: "power2.out",
   }, "-=.3")
   // Description box
   .from(".relative.group > .relative", {
@@ -63,6 +48,7 @@ tl
     opacity: 0,
     duration: 0.5,
     ease: "power2.out",
+
   }, "-=.2")
   // Buttons
   .from(".links", {
@@ -70,7 +56,8 @@ tl
     opacity: 1,
     duration: 0.5,
     stagger: 0.1,
-    ease: "power2.out"
+    ease: "power2.out",
+
   }, "-=.2");
 
 // Projects section animations - Faster version
@@ -81,6 +68,7 @@ gsap.utils.toArray('.projects').forEach((project, i) => {
       start: 'top 90%',
       end: 'bottom 10%',
       toggleActions: 'play none none reverse',
+      once: true
     },
     y: 20,
     opacity: 0,
@@ -111,12 +99,13 @@ gsap.utils.toArray('.projects').forEach((project, i) => {
 });
 
 // About section animations - Faster version
-gsap.from("#about .bg-gray-900\\/50", {
+gsap.from("#about", {
   scrollTrigger: {
     trigger: "#about",
     start: 'top 85%',
     end: 'bottom 15%',
-    toggleActions: 'play none none none'
+    toggleActions: 'play none none none',
+    once: true
   },
   y: 20,
   opacity: 0,
@@ -129,7 +118,8 @@ gsap.from("#about img", {
     trigger: "#about",
     start: 'top 85%',
     end: 'bottom 15%',
-    toggleActions: 'play none none none'
+    toggleActions: 'play none none none',
+    once: true
   },
   scale: 0.95,
   opacity: 0,
@@ -152,7 +142,8 @@ skillSections.forEach(section => {
         trigger: item,
         start: 'top 92%',
         end: 'bottom 8%',
-        toggleActions: 'play none none none'
+        toggleActions: 'play none none none',
+        once: true
       },
       y: 15,
       opacity: 0,
@@ -176,6 +167,7 @@ sectionHeaders.forEach(selector => {
       trigger: selector,
       start: 'top 92%',
       toggleActions: 'play none none none',
+      once: true
     },
     y: 20,
     opacity: 0,
@@ -213,6 +205,7 @@ gsap.utils.toArray(".skills-category").forEach((category, i) => {
       toggleActions: "play none none reverse",
       start: "top 90%",
       end: "bottom 15%",
+      once: true
     },
     x: i % 2 === 0 ? -10 : 10,
     opacity: 0,
@@ -254,6 +247,7 @@ gsap.utils.toArray(".certificate-item").forEach((item, i) => {
       toggleActions: "play none none reverse",
       start: "top 90%",
       end: "bottom 15%",
+      once: true
     },
     scale: 0.5,
     opacity: 0,
@@ -270,6 +264,7 @@ gsap.utils.toArray(".certificate-item").forEach((item, i) => {
       toggleActions: "play none none reverse",
       start: "top 85%",
       end: "bottom 15%",
+      once: true
     },
     x: i % 2 === 0 ? 30 : -30,
     opacity: 0,
@@ -278,3 +273,31 @@ gsap.utils.toArray(".certificate-item").forEach((item, i) => {
     ease: "power2.out"
   });
 });
+
+
+// Animación del fondo
+const bgTl = gsap.timeline({
+  repeat: -1,
+  yoyo: true,
+  repeatRefresh: true
+});
+
+bgTl.to(".hero-bg", {
+  "--inner-stop": "60%",
+  "--outer-stop": "100%",
+  duration: 8,
+  ease: "sine.inOut",
+  onUpdate: function() {
+    // Forzar repintado para mejor rendimiento
+    document.querySelector('.hero-bg').style.willChange = 'background';
+  },
+  onComplete: function() {
+    document.querySelector('.hero-bg').style.willChange = 'auto';
+  }
+})
+.to(".hero-bg", {
+  "--inner-stop": "30%",
+  "--outer-stop": "70%",
+  duration: 12,
+  ease: "sine.inOut"
+}, ">2")

@@ -11,31 +11,36 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content={description} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
     <title>{title}</title>
     <ClientRouter />
-    <meta name="description" content={description} />
   </head>
-  <body class="text-white bg-black">
+  <body class="min-h-screen flex flex-col text-white bg-editor-bg">
     <Nanvar />
-    <div
-      class="pointer_mouse h-[600px] w-[600px] overflow-hidden rounded-full fixed z-9999"
-    >
-    </div>
-    <div class="fixed top-0 bottom-0 z-[-2] min-h-screen w-full bg-gradient-to-b from-black via-gray-900 to-black">
-      <img
-        src="./images/Neon.webp"
-        alt="background"
-        class="relative z-[-2] w-full h-full top-0 opacity-[.1] brightness-100 object-cover
-           animate-[pulse_6s_ease-in-out_infinite]"
-      />
-    </div>
-    <main class=" md:space-y-32 md:py-24 py-16">
-      <slot />
+    <section class="hero-bg min-h-screen fixed inset-0"></section>
+    <main class="flex-1 md:space-y-32 md:py-24 py-16">
+      <div class="container mx-auto ">
+        <slot />
+      </div>
     </main>
     <Footer />
     <script src="../lib/gsap.js"></script>
@@ -54,19 +59,28 @@ const { description, title } = Astro.props;
     cursor: url("https://ani.cursors-4u.net/cursors/cur-13/cur1160.png"), auto;
   }
 
-  .pointer_mouse {
-    background-color: rgba(5, 70, 247, 0.349);
-    background: radial-gradient(
-      circle,
-      rgba(0, 81, 231, 0.123) 2%,
-      transparent
-    );
-    brightness: 1.2;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
   button,
   a {
-    cursor: url("https://cur.cursors-4u.net/cursors/cur-1/cur1067.png"),
+    cursor: url("https://cur.cursors-4u.net/cursors/cur-1/cur1067.png");
+  }
+
+  .hero-bg {
+    --inner-stop: 30%;
+    --outer-stop: 70%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: radial-gradient(
+      circle at center,
+      #1e293b 0%,
+      #0f172a var(--inner-stop),
+      #020617 var(--outer-stop),
+      #000000 100%
+    );
+    background-attachment: fixed;
+    transition: --inner-stop 0.5s ease, --outer-stop 0.5s ease;
   }
 </style>

@@ -7,10 +7,10 @@ import User from "./icons/User.astro";
   class="w-full mx-auto max-w-7xl sm:px-6 lg:px-8 py-16 md:py-24"
 >
   <div class="max-w-4xl mx-auto">
-    <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-800/50 overflow-hidden transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5">
-      <div class="p-4 border-b border-gray-800/50 bg-gradient-to-r from-blue-900/20 to-purple-900/10">
-        <h2 class="text-lg md:text-[30px] font-bold text-white flex items-center gap-3">
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+    <div class="bg-editor-bg/50 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden transition-all duration-300 hover:border-object-global/30 hover:shadow-lg hover:shadow-object-global/5">
+      <div class="p-4 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10 to-keyword/10">
+        <h2 class="text-lg md:text-[30px] font-bold text-text-default flex items-center gap-3">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
             Sobre Mí
           </span>
         </h2>
@@ -20,40 +20,38 @@ import User from "./icons/User.astro";
       <div class="p-4 md:p-8">
         <div class="flex flex-col lg:flex-row gap-8 items-center">
           <div class="lg:w-2/3 space-y-6">
-            <div class="space-y-4 text-gray-300">
+            <div class="space-y-4 text-text-default">
               <p class="text-sm md:text-md leading-relaxed">
-                Hola, soy <span class="text-blue-300 font-medium">George</span>, un apasionado desarrollador web con enfoque en el desarrollo Frontend, aunque también me desenvuelvo cómodamente en el Backend. Mi pasión por JavaScript me ha llevado a especializarme en este ecosistema, donde encuentro la combinación perfecta entre creatividad y lógica.
+                Hola, soy <span class="text-variable font-medium">George</span>, un apasionado desarrollador web con enfoque en el desarrollo Frontend, aunque también me desenvuelvo cómodamente en el Backend. Mi pasión por JavaScript me ha llevado a especializarme en este ecosistema, donde encuentro la combinación perfecta entre creatividad y lógica.
               </p>
               
               <p class="text-sm md:text-md leading-relaxed">
-                Soy <span class="text-blue-300 font-medium">Tecnólogo en Desarrollo de Software</span> egresado de la Universidad de Cundinamarca, donde me gradué con honores en septiembre de 2024. A lo largo de mi formación, he tenido la oportunidad de trabajar en diversos proyectos que han fortalecido mis habilidades técnicas y blandas.
+                Soy <span class="text-variable font-medium">Tecnólogo en Desarrollo de Software</span> egresado de la Universidad de Cundinamarca, donde me gradué con honores en septiembre de 2024. A lo largo de mi formación, he tenido la oportunidad de trabajar en diversos proyectos que han fortalecido mis habilidades técnicas y blandas.
               </p>
               
               <p class="text-sm leading-relaxed">
-                Lo que más disfruto de mi profesión es la capacidad de crear soluciones innovadoras que impacten positivamente. Soy un <span class="text-blue-300 font-medium">aprendiz constante</span>, siempre en búsqueda de nuevos retos y tecnologías que me permitan crecer tanto profesional como personalmente.
+                Lo que más disfruto de mi profesión es la capacidad de crear soluciones innovadoras que impacten positivamente. Soy un <span class="text-variable font-medium">aprendiz constante</span>, siempre en búsqueda de nuevos retos y tecnologías que me permitan crecer tanto profesional como personalmente.
               </p>
             </div>
           </div>
           
           <div class="lg:w-1/3 relative group">
             <div class="relative z-10 aspect-square w-full max-w-xs mx-auto">
-              <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-75 blur-lg group-hover:opacity-100 transition-all duration-300"></div>
+              <div class="absolute inset-0 w-full h-full transition-all duration-300 rounded-full bg-gradient-to-r from-object-global to-keyword opacity-0 group-hover:opacity-100 blur-md"></div>
               <img
                 src="/logo/Logo.webp"
                 alt="George Contreras - Desarrollador Web"
-                class="relative z-10 w-full h-full object-cover rounded-full border-4 border-gray-800/80 shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                class="relative z-20 w-full h-auto rounded-full border-4 border-sidebar-bg shadow-2xl transition-all duration-300 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
             <div class="mt-6 text-center">
-              <h3 class="text-xl font-bold text-white">George Contreras</h3>
-              <p class="text-blue-300">Desarrollador Full Stack</p>
+              <h3 class="text-xl text-text-default mt-4 text-center">George Contreras</h3>
+              <p class="text-variable">Desarrollador Full Stack</p>
               <div class="mt-2 flex justify-center space-x-3">
-                <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs rounded-full">
+                <span class="inline-flex items-center justify-center gap-2 px-6 py-2 mt-6 text-sm font-medium text-black
+                transition-all duration-300 bg-object-global rounded-full hover:bg-variable group">
                   JavaScript
-                </span>
-                <span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded-full">
-                  React
                 </span>
               </div>
             </div>

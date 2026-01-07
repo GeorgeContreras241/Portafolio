@@ -37,19 +37,18 @@ const getIconComponent = (name: any) => {
 >
   <div class="max-w-4xl mx-auto text-center mb-16 md:mb-20">
     <h2
-      class="text-xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 mb-4 gsap-title"
+      class="text-xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg mb-4 gsap-title"
     >
       Habilidades & Tecnologías
     </h2>
-    <p class="text-gray-300 text-sm md:text-xl max-w-2xl mx-auto gsap-subtitle">
+    <p class="text-text-default/80 text-sm md:text-xl max-w-2xl mx-auto gsap-subtitle">
       Tecnologías y herramientas con las que trabajo habitualmente
     </p>
   </div>
-  <div class="mb-12 last:mb-0 bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-800/50 overflow-hidden 
-  transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5">
-    <div class="p-4 border-b border-gray-800/50 bg-gradient-to-r from-blue-900/20 to-purple-900/10">
-      <h3 class="text-lg font-bold text-white flex items-center gap-3">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+  <div class="mb-12 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden">
+    <div class="p-4 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
+      <h3 class="text-lg font-bold text-text-default flex items-center gap-3">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
           Frontend
         </span>
       </h3>
@@ -61,17 +60,17 @@ const getIconComponent = (name: any) => {
         frontendSkills.map((tech) => {
           const Icon = getIconComponent(tech.icon);
           return (
-            <li class="group relative p-4 bg-gray-800/60 rounded-xl border border-gray-700/50 hover:border-blue-500/30 
-            transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-blue-500/5">
+            <li class="group relative p-4 bg-sidebar-bg/60 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 
+            transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
               <div class="flex items-center flex-wrap justify-center gap-3">
-                <div class="p-2.5 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300">
-                  {Icon && <Icon class="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />}
+                <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
+                  {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
                 </div>
                 <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
-                  <h4 class="font-medium text-white group-hover:text-blue-300 transition-colors duration-300">
+                  <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
                     {tech.name}
                   </h4>
-                  <p class="text-xs text-gray-400 mt-0.5">{tech.level || 'Avanzado'}</p>
+                  <p class="text-xs text-[#CE9178] mt-0.5">{tech.level || 'Avanzado'}</p>
                 </div>
               </div>
             </li>
@@ -81,11 +80,10 @@ const getIconComponent = (name: any) => {
     </ul>
   </div>
 
-  <div class="mb-12 last:mb-0 bg-gray-900/60 backdrop-blur-sm rounded-2xl border border-gray-800/50 overflow-hidden transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5">
-    <div class="p-3 border-b border-gray-800/50 bg-gradient-to-r from-blue-900/20 to-purple-900/10">
-      <h3 class="text-lg font-bold text-white flex items-center gap-3">
-        <span class="text-blue-400">02</span>
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+  <div class="mb-12 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden">
+    <div class="p-3 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
+      <h3 class="text-lg font-bold text-text-default flex items-center gap-3">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
           Backend
         </span>
       </h3>
@@ -97,16 +95,16 @@ const getIconComponent = (name: any) => {
         backendSkills.map((tech) => {
           const Icon = getIconComponent(tech.icon);
           return (
-            <li class="group relative p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-blue-500/5">
+            <li class="group relative p-4 bg-sidebar-bg/50 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
               <div class="flex items-center flex-wrap justify-center gap-3">
-                <div class="p-2.5 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300">
-                  {Icon && <Icon class="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />}
+                <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
+                  {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
                 </div>
                 <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
-                  <h4 class="font-medium text-white group-hover:text-blue-300 transition-colors duration-300">
+                  <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
                     {tech.name}
                   </h4>
-                  <p class="text-xs text-gray-400 mt-0.5">{tech.level || 'Intermedio'}</p>
+                  <p class="text-xs text-comment mt-0.5">{tech.level || 'Intermedio'}</p>
                 </div>
               </div>
             </li>
@@ -116,11 +114,10 @@ const getIconComponent = (name: any) => {
     </ul>
   </div>
 
-  <div class="mb-12 last:mb-0 bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-800/50 overflow-hidden transition-all duration-300 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5">
-    <div class="p-3 border-b border-gray-800/50 bg-gradient-to-r from-blue-900/20 to-purple-900/10">
-      <h3 class="text-lg font-bold text-white flex items-center gap-3">
-        <span class="text-blue-400">03</span>
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+  <div class="mb-12 last:mb-0 bg-editor-bg/50 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden ">
+    <div class="p-3 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
+      <h3 class="text-lg font-bold text-text-default flex items-center gap-3">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
           DevOps
         </span>
       </h3>
@@ -132,16 +129,16 @@ const getIconComponent = (name: any) => {
         devopsSkills.map((tech) => {
           const Icon = getIconComponent(tech.icon);
           return (
-            <li class="group relative p-4 bg-gray-800/50 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-blue-500/5">
+            <li class="group relative p-4 bg-sidebar-bg/50 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
               <div class="flex items-center flex-wrap justify-center gap-3">
-                <div class="p-2.5 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300">
-                  {Icon && <Icon class="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />}
+                <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
+                  {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
                 </div>
                 <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
-                  <h4 class="font-medium text-white group-hover:text-blue-300 transition-colors duration-300">
+                  <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
                     {tech.name}
                   </h4>
-                  <p class="text-xs text-gray-400 mt-0.5">{tech.level || 'Intermedio'}</p>
+                  <p class="text-xs text-comment mt-0.5">{tech.level || 'Intermedio'}</p>
                 </div>
               </div>
             </li>

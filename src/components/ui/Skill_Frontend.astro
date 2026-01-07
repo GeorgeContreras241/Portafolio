@@ -1,0 +1,69 @@
+---
+import { frontendSkills } from "../../const/frontendSkills.js";
+
+---
+<section>
+    <div class="max-w-4xl mx-auto text-center mb-16 md:mb-20">
+        <h2
+            class="text-xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg mb-4 gsap-title"
+        >
+            Habilidades & Tecnologías
+        </h2>
+        <p
+            class="text-text-default/80 text-sm md:text-xl max-w-2xl mx-auto gsap-subtitle"
+        >
+            Tecnologías y herramientas con las que trabajo habitualmente
+        </p>
+    </div>
+    <div
+        class="mb-12 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden"
+    >
+        <div
+            class="p-4 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10"
+        >
+            <h3
+                class="text-lg font-bold text-text-default flex items-center gap-3"
+            >
+                <span
+                    class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg"
+                >
+                    Frontend
+                </span>
+            </h3>
+            <p class="mt-1 text-gray-400 text-sm">
+                Tecnologías para el desarrollo de interfaces de usuario
+            </p>
+        </div>
+        <div class="p-3">
+            <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {
+                    frontendSkills.map((tech) => {
+                        const Icon = getIconComponent(tech.icon);
+                        return (
+                            <li
+                                class="group relative p-4 bg-sidebar-bg/60 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 
+            transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5"
+                            >
+                                <div class="flex items-center flex-wrap justify-center gap-3">
+                                    <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
+                                        {Icon && (
+                                            <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />
+                                        )}
+                                    </div>
+                                    <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
+                                        <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
+                                            {tech.name}
+                                        </h4>
+                                        <p class="text-xs text-[#CE9178] mt-0.5">
+                                            {tech.level || "Avanzado"}
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </div>
+    </div>
+</section>
