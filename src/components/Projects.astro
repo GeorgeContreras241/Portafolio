@@ -64,7 +64,8 @@ const getComponentIcon = (name: any)   => {
                       src={project.image}
                       alt={project.name}
                       loading="lazy"
-                      class="image w-full h-full object-cover aspect-auto rounded-b-lg border border-gray-700 cursor-pointer relative top-5 left-5 hover:top-0 hover:left-0 transition-all duration-1000 hover:border-transparent"
+                      decoding="async"
+                      class="image w-full h-full object-cover aspect-auto rounded-b-lg border border-gray-700 cursor-pointer relative top-5 left-5 hover:top-0 hover:left-0 transition-all duration-300 hover:border-transparent"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                       <div class="flex flex-wrap gap-2">
@@ -111,7 +112,7 @@ const getComponentIcon = (name: any)   => {
                       </a>
                       {project.url && (
                         <a
-                          href={project.url}
+                          href={project.url === true ? '#' : project.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 
@@ -120,7 +121,7 @@ const getComponentIcon = (name: any)   => {
                           aria-label="Ver demo"
                         >
                           <Web class="h-4 w-4 group-hover:scale-110 transition-transform flex-shrink-0" />
-                          <span>{project.url === true ? 'Documentación' : 'Demo'}</span>
+                          <span>{project.url === true ? 'Documentación' : project.url ? 'Demo' : ''}</span>
                         </a>
                       )}
                     </div>
