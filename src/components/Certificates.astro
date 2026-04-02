@@ -1,62 +1,66 @@
-<section class="certificates-section rounded-2xl border border-gray-800/50 overflow-hidden">
-  <div class="p-6 border-b border-gray-800/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
+---
+import certifications from "../const/certifications";
+---
+
+<section
+  class="certificates-section rounded-2xl border border-gray-800/50 overflow-hidden"
+>
+  <div
+    class="p-6 border-b border-gray-800/50 bg-gradient-to-r from-editor-bg to-selection-bg/10"
+  >
     <h3 class="text-lg font-bold text-white flex items-center gap-3">
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
+      <span
+        class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg"
+      >
         Educación & Certificaciones
       </span>
     </h3>
-    <p class="mt-1 text-gray-400 text-sm">Mi trayectoria académica y formaciones profesionales</p>
+    <p class="mt-1 text-gray-400 text-sm">
+      Mi trayectoria académica y formaciones profesionales
+    </p>
   </div>
-  
+
   <div class="p-4">
     <ul class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <li class="group relative p-4 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-blue-500/5">
-        <div class="flex flex-col md:flex-row items-center gap-6">
-          <div class="certificate-logo w-20 h-20 p-3 bg-white/5 rounded-xl border border-gray-700/50 flex items-center justify-center">
-            <img 
-              src="./logo/udec-logo.png" 
-              alt="Logo de la Universidad de Cundinamarca" 
-              class="w-full h-full object-contain"
-              loading="lazy"
-            >
-          </div>
-          <div class="certificate-content flex-1 text-center md:text-left">
-            <h4 class="font-bold text-md text-white">
-              Tecnología en Desarrollo de Software
-            </h4>
-            <p class="text-blue-400 mt-1 text-sm">Universidad de Cundinamarca</p>
-            <div class="mt-2 flex items-center justify-center md:justify-start gap-2">
-              <span class="px-3 py-1 bg-blue-500/10 text-text-default text-xs rounded-full">
-                2024 - Culminado
-              </span>
+      {
+        certifications?.map((item) => (
+          <li class="group relative p-4 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-blue-500/5">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+              <div class="certificate-logo w-20 h-20 p-3 bg-white/5 rounded-xl border border-gray-700/50 flex items-center justify-center">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <div class="certificate-content flex-1 text-center md:text-left">
+                {
+                    item.url ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer">
+                            <h4 class="font-bold text-md text-white">
+                                {item.name}
+                            </h4>
+                        </a>
+                    ) : (
+                        <h4 class="font-bold text-md text-white">
+                            {item.name}
+                        </h4>
+                    )
+                }
+                <p class="text-blue-400 mt-1 text-sm">
+                  {item.description}
+                </p>
+                <div class="mt-2 flex items-center justify-center md:justify-start gap-2">
+                  <span class="px-3 py-1 bg-blue-500/10 text-text-default text-xs rounded-full">
+                    {item.date}
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </li>
-
-      <li class="group relative p-4 rounded-xl border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-blue-500/5">
-        <div class="flex flex-col md:flex-row items-center gap-6">
-          <div class="certificate-logo w-20 h-20 p-3 bg-white/5 rounded-xl border border-gray-700/50 flex items-center justify-center">
-            <img 
-              src="./logo/telento-tech.png" 
-              alt="Logo de Telento Tech" 
-              class="w-full h-full object-contain"  
-              loading="lazy"
-            >
-          </div>
-          <div class="certificate-content flex-1 text-center md:text-left">
-            <h4 class="font-bold text-md text-white">
-              BootCamp Desarrollo Web Full Stack
-            </h4>
-            <p class="text-blue-400 mt-1 text-sm">Telento Tech</p>
-            <div class="mt-2 flex items-center justify-center md:justify-start gap-2">
-              <span class="px-3 py-1 bg-blue-500/10 text-text-default text-xs rounded-full">
-                2024 - Culminado
-              </span>
-            </div>
-          </div>
-        </div>
-      </li>
+          </li>
+        ))
+      }
     </ul>
   </div>
 </section>
