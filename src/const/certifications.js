@@ -18,16 +18,6 @@ const certifications = [
         url: 'https://certificados.talentotech.co/?cert=2387056631&fingerprint=y#pdf',
         github: 'https://github.com/GeorgeContreras241',
         state: true
-    },
-    {
-        id: 3,
-        name: 'Analisis y Desarrolo de software',
-        description: 'SENA - Servicio Nacional de Aprendizaje',
-        date: '2026 - Actual',
-        image: './logo/logo-sena.webp',
-        url: 'https://www.sena.edu.co/',
-        github: undefined,
-        state: true
     }
 ];
 
