@@ -1,13 +1,18 @@
-export const devopsSkills = [
-    {
-      name: 'GitHub',
-      icon: 'GitHub',
-      level: 'Avanzado'
-    },
+export const toolsSkills = [
     {
       name: 'Git',
-      icon: 'GitHub',
-      level: 'Experto'
+      icon: 'GitHub'
+    },
+    {
+      name: 'GitHub',
+      icon: 'GitHub'
+    },
+    {
+      name: 'VS Code',
+      icon: 'Code'
+    },
+    {
+      name: 'npm',
+      icon: 'Code'
     }
   ];
-  

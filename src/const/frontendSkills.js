@@ -1,27 +1,30 @@
 export const frontendSkills = [
     {
       name: 'React',
-      icon: 'React',
-      level: 'Avanzado'
+      icon: 'React'
     },
     {
       name: 'JavaScript',
-      icon: 'JavaScript',
-      level: 'Experto'
+      icon: 'JavaScript'
     },
     {
-      name: 'NextJS',
-      icon: 'Next',
-      level: 'Avanzado'
+      name: 'Next.js',
+      icon: 'Next'
     },
     {
       name: 'Astro',
-      icon: 'Astro_icons',
-      level: 'Avanzado'
+      icon: 'Astro_icons'
     },
     {
       name: 'Tailwind CSS',
-      icon: 'Tailwind',
-      level: 'Experto'
+      icon: 'Tailwind'
+    },
+    {
+      name: 'HTML',
+      icon: 'Code'
+    },
+    {
+      name: 'CSS',
+      icon: 'Code'
     }
   ];

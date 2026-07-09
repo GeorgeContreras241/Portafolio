@@ -8,14 +8,14 @@ import Next from "./icons/Next.js.astro";
 import Node from "./icons/Node.astro";
 import React from "./icons/React.astro";
 import Tailwind from "./icons/Tailwind.astro";
-import Skills_icon from "./icons/Skills.astro";
+import Code from "./icons/Code.astro";
 import { frontendSkills } from "../const/frontendSkills.js";
 import { backendSkills } from "../const/backendSkills.js";
-import { devopsSkills } from "../const/devopsSkills.js";
+import { toolsSkills } from "../const/devopsSkills.js";
 import Certificates from "./Certificates.astro";
 
-const getIconComponent = (name: any) => {
-  const icons = {
+const getIconComponent = (name: string) => {
+  const icons: Record<string, any> = {
     React,
     Next,
     Astro_icons,
@@ -25,10 +25,17 @@ const getIconComponent = (name: any) => {
     Express,
     Mongo,
     GitHub,
+    Code,
   };
 
   return icons[name] || null;
 };
+
+const sections = [
+  { title: 'Frontend', subtitle: 'Interfaces de usuario', skills: frontendSkills },
+  { title: 'Backend', subtitle: 'Lado del servidor', skills: backendSkills },
+  { title: 'Herramientas', subtitle: 'Flujo de trabajo', skills: toolsSkills },
+];
 ---
 
 <section
@@ -42,111 +49,46 @@ const getIconComponent = (name: any) => {
       Habilidades & Tecnologías
     </h2>
     <p class="text-text-default/80 text-sm md:text-xl max-w-2xl mx-auto gsap-subtitle">
-      Tecnologías y herramientas con las que trabajo habitualmente
+      Tecnologías y herramientas con las que trabajo
     </p>
   </div>
-  <div class="mb-12 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden">
-    <div class="p-4 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
-      <h3 class="text-lg font-bold text-text-default flex items-center gap-3">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
-          Frontend
-        </span>
-      </h3>
-      <p class="mt-1 text-gray-400 text-sm">Tecnologías para el desarrollo de interfaces de usuario</p>
-    </div>
-    <div class="p-3">
-      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      {
-        frontendSkills.map((tech) => {
-          const Icon = getIconComponent(tech.icon);
-          return (
-            <li class="group relative p-4 bg-sidebar-bg/60 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 
-            transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
-              <div class="flex items-center flex-wrap justify-center gap-3">
-                <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
-                  {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
-                </div>
-                <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
-                  <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
-                    {tech.name}
-                  </h4>
-                  <p class="text-xs text-[#CE9178] mt-0.5">{tech.level || 'Avanzado'}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </div>
 
-  <div class="mb-12 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden">
-    <div class="p-3 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
-      <h3 class="text-lg font-bold text-text-default flex items-center gap-3">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
-          Backend
-        </span>
-      </h3>
-      <p class="mt-1 text-gray-400">Tecnologías para el desarrollo del lado del servidor</p>
-    </div>
-    <div class="p-4">
-      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      {
-        backendSkills.map((tech) => {
-          const Icon = getIconComponent(tech.icon);
-          return (
-            <li class="group relative p-4 bg-sidebar-bg/50 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
-              <div class="flex items-center flex-wrap justify-center gap-3">
-                <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
-                  {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
-                </div>
-                <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
-                  <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
-                    {tech.name}
-                  </h4>
-                  <p class="text-xs text-comment mt-0.5">{tech.level || 'Intermedio'}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </div>
+  {
+    sections.map((section) => (
+      <div class="mb-12 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden">
+        <div class="p-4 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
+          <h3 class="text-lg font-bold text-text-default">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
+              {section.title}
+            </span>
+          </h3>
+          <p class="mt-1 text-gray-400 text-sm">{section.subtitle}</p>
+        </div>
+        <div class="p-3">
+          <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {section.skills.map((tech) => {
+              const Icon = getIconComponent(tech.icon);
+              return (
+                <li class="group relative p-4 bg-sidebar-bg/60 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
+                  <div class="flex items-center flex-wrap justify-center gap-3">
+                    <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
+                      {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
+                    </div>
+                    <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
+                      <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
+                        {tech.name}
+                      </h4>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    ))
+  }
 
-  <div class="mb-12 last:mb-0 bg-editor-bg/50 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden ">
-    <div class="p-3 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
-      <h3 class="text-lg font-bold text-text-default flex items-center gap-3">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
-          DevOps
-        </span>
-      </h3>
-      <p class="mt-1 text-gray-400">Herramientas para despliegue y operaciones</p>
-    </div>
-    <div class="p-4">
-      <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      {
-        devopsSkills.map((tech) => {
-          const Icon = getIconComponent(tech.icon);
-          return (
-            <li class="group relative p-4 bg-sidebar-bg/50 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
-              <div class="flex items-center flex-wrap justify-center gap-3">
-                <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
-                  {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
-                </div>
-                <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
-                  <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
-                    {tech.name}
-                  </h4>
-                  <p class="text-xs text-comment mt-0.5">{tech.level || 'Intermedio'}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </div>
   <div class="mt-20">
     <Certificates />
   </div>

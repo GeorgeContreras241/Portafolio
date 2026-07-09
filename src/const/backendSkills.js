@@ -1,17 +1,14 @@
 export const backendSkills = [
     {
       name: 'Node.js',
-      icon: 'Node',
-      level: 'Avanzado'
+      icon: 'Node'
     },
     {
-      name: 'Express.js',
-      icon: 'Express',
-      level: 'Avanzado'
+      name: 'Express',
+      icon: 'Express'
     },
     {
       name: 'MongoDB',
-      icon: 'Mongo',
-      level: 'Avanzado'
+      icon: 'Mongo'
     }
   ];
