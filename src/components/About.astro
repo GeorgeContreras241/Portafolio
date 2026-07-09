@@ -2,7 +2,7 @@
 import User from "./icons/User.astro";
 ---
 
-<section 
+<section
   id="about"
   class="w-full mx-auto max-w-7xl sm:px-6 lg:px-8 py-16 md:py-24"
 >
@@ -14,27 +14,36 @@ import User from "./icons/User.astro";
             Sobre Mí
           </span>
         </h2>
-        <p class="mt-1 text-gray-400 text-sm">Conoce más sobre mi trayectoria y pasión por la tecnología</p>
+        <p class="mt-1 text-gray-400 text-sm">Formación, experiencia y lo que me mueve</p>
       </div>
-      
+
       <div class="p-4 md:p-8">
         <div class="flex flex-col lg:flex-row gap-8 items-center">
           <div class="lg:w-2/3 space-y-6">
             <div class="space-y-4 text-text-default">
               <p class="text-sm md:text-md leading-relaxed">
-                Hola, soy <span class="text-variable font-medium">George</span>, un apasionado desarrollador web con enfoque en el desarrollo Frontend, aunque también me desenvuelvo cómodamente en el Backend. Mi pasión por JavaScript me ha llevado a especializarme en este ecosistema, donde encuentro la combinación perfecta entre creatividad y lógica.
+                Soy <span class="text-variable font-medium">George Contreras</span>, Tecnólogo en Desarrollo de Software egresado de la Universidad de Cundinamarca (2024). Me especializo en <span class="text-boolean">Frontend</span> con el ecosistema JavaScript, aunque también desarrollo en Backend cuando el proyecto lo requiere.
               </p>
-              
+
               <p class="text-sm md:text-md leading-relaxed">
-                Soy <span class="text-variable font-medium">Tecnólogo en Desarrollo de Software</span> egresado de la Universidad de Cundinamarca, donde me gradué con honores en septiembre de 2024. A lo largo de mi formación, he tenido la oportunidad de trabajar en diversos proyectos que han fortalecido mis habilidades técnicas y blandas.
+                Me gusta construir interfaces que se sientan rápidas, limpias y funcionales. Siempre estoy aprendiendo algo nuevo y buscando retos que me hagan crecer.
               </p>
-              
-              <p class="text-sm leading-relaxed">
-                Lo que más disfruto de mi profesión es la capacidad de crear soluciones innovadoras que impacten positivamente. Soy un <span class="text-variable font-medium">aprendiz constante</span>, siempre en búsqueda de nuevos retos y tecnologías que me permitan crecer tanto profesional como personalmente.
-              </p>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sidebar-bg/80 text-xs font-medium text-text-default rounded-lg border border-sidebar-bg">
+                  <span class="text-boolean">const</span> stack = [<span class="text-[#CE9178]">"React"</span>, <span class="text-[#CE9178]">"Next.js"</span>, <span class="text-[#CE9178]">"Tailwind"</span>]
+                </span>
+              </div>
+
+              <a
+                href="#projects"
+                class="inline-flex items-center gap-2 text-sm text-variable hover:text-statusbar-bg transition-colors duration-200 font-medium"
+              >
+                Ver mis proyectos →
+              </a>
             </div>
           </div>
-          
+
           <div class="lg:w-1/3 relative group">
             <div class="relative z-10 aspect-square w-full max-w-xs mx-auto">
               <div class="absolute inset-0 w-full h-full transition-all duration-300 rounded-full bg-gradient-to-r from-object-global to-keyword opacity-0 group-hover:opacity-100 blur-md"></div>
@@ -47,13 +56,7 @@ import User from "./icons/User.astro";
             </div>
             <div class="mt-6 text-center">
               <h3 class="text-xl text-text-default mt-4 text-center">George Contreras</h3>
-              <p class="text-variable">Desarrollador Full Stack</p>
-              <div class="mt-2 flex justify-center space-x-3">
-                <span class="inline-flex items-center justify-center gap-2 px-6 py-2 mt-6 text-sm font-medium text-black
-                transition-all duration-300 bg-object-global rounded-full hover:bg-variable group">
-                  JavaScript
-                </span>
-              </div>
+              <p class="text-variable">Frontend Developer</p>
             </div>
           </div>
         </div>
