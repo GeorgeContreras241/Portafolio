@@ -3,14 +3,15 @@ export const projects = [
       id: 1,
       name: 'Nube y Local con Autenticación WebAuthn',
       description:
-        'Aplicación que permite gestionar contraseñas de forma segura con autenticación WebAuthn de manera local o en la nube.',
+        'Gestor de contraseñas con autenticación biométrica WebAuthn. Soporta modo local y nube.',
+      highlight: 'Autenticación segura sin contraseñas maestras',
       technologies: [
         { name: 'NextJS', icon: 'NextJS' },
         { name: 'Tailwind', icon: 'Tailwind' },
         { name: 'MongoDB', icon: 'Mongo' }
       ],
-      url: null,
-      github: 'https://github.com/GeorgeContreras241/G--Project-Sena',
+      url: "https://g-clavevault.vercel.app/",
+      github: 'https://github.com/GeorgeContreras241/G--ClaveVault.git',
       image: './images/project07.webp',
       state: true
 
@@ -19,7 +20,8 @@ export const projects = [
       id: 2,
       name: 'Local - Gestor de Contraseñas',
       description:
-        'Aplicación local segura para gestionar contraseñas. Las contraseñas se encriptan en el frontend y no se almacenan en la base de datos, garantizando que solo el usuario pueda desencriptarlas con su clave maestra.',
+        'Gestor local con encriptación en frontend. Las contraseñas nunca salen del navegador.',
+      highlight: 'Cero dependencias de servidor para datos sensibles',
       technologies: [
         { name: 'React', icon: 'React' },
         { name: 'Tailwind', icon: 'Tailwind' }
@@ -33,7 +35,8 @@ export const projects = [
       id: 4,
       name: 'Ward Spy',
       description:
-        'Aplicación web que permite al usuario a través del Riot Tag de League of Legends buscar información de sus partidas y live games. Gestionando la API de Riot Games a través de NextJS y cacheando la información para que no se sobrecargue el servidor. Mediante uso de MongoDB y localStorage.',
+        'App web para consultar stats de League of Legends en tiempo real vía Riot API.',
+      highlight: 'Cache inteligente para evitar rate limits de la API',
       technologies: [
         { name: 'NextJS', icon: 'NextJS' },
         { name: 'Tailwind', icon: 'Tailwind' },
