@@ -14,8 +14,8 @@ html {
 
 @theme {
   /* Fondo */
-  --color-editor-bg: oklch(0.23 0 0);            /* #1E1E1E */
-  --color-sidebar-bg: oklch(0.27 0 0);           /* #252526 */
+  --color-editor-bg: oklch(0.14 0 0);            /* #111111 */
+  --color-sidebar-bg: oklch(0.22 0 0);           /* #1E1E1E */
 
   /* Texto base */
   --color-text-default: oklch(0.84 0 0);         /* #D4D4D4 */
