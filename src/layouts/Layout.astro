@@ -8,6 +8,7 @@ interface Props {
   description: string;
 }
 const { description, title } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app');
 ---
 
 <!doctype html>
@@ -17,6 +18,7 @@ const { description, title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV814N8KRX"></script>
@@ -34,17 +36,38 @@ const { description, title } = Astro.props;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://porta-tau.vercel.app/og-image.png" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:site_name" content="George Contreras - Portafolio" />
+    <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://porta-tau.vercel.app/og-image.png" />
 
-    <!-- google -->
-    <meta
-      name="google-site-verification"
-      content="l-alFNWuLelVJHLkOp7CcYWDs8A36mnNqOr_VM9mQSg"
-    />
+    <!-- Google -->
+    <meta name="google-site-verification" content="l-alFNWuLelVJHLkOp7CcYWDs8A36mnNqOr_VM9mQSg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "George Contreras",
+      "url": "https://porta-tau.vercel.app",
+      "jobTitle": "Frontend Developer",
+      "description": description,
+      "sameAs": [
+        "https://www.linkedin.com/in/georgecontreras241/",
+        "https://github.com/GeorgeContreras241"
+      ],
+      "knowsAbout": ["React", "Next.js", "JavaScript", "Tailwind CSS", "Astro", "Node.js", "MongoDB"],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Universidad de Cundinamarca"
+      }
+    })} />
 
     <title>{title}</title>
     <ClientRouter />
