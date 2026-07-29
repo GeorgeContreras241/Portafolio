@@ -2,8 +2,11 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://porta-tau.vercel.app',
   vite: {
     plugins: [tailwindcss()],
     build: {
@@ -17,7 +20,10 @@ export default defineConfig({
       }
     }
   },
+
   build: {
     format: 'directory'
-  }
+  },
+
+  integrations: [sitemap()]
 });
