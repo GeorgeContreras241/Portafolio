@@ -92,6 +92,18 @@ const { description, title } = Astro.props;
     </button>
 
     <script src="../lib/gsap.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV814N8KRX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-XV814N8KRX");
+    </script>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
