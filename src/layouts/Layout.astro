@@ -115,25 +115,25 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
 
 <script>
   const STAR_COLOR = "#00cfff";
-  const STAR_SIZE = 4;
+  const STAR_SIZE = 3;
   const STAR_MIN_SCALE = 0.2;
   const OVERFLOW_THRESHOLD = 50;
-  const STAR_COUNT = (window.innerWidth + window.innerHeight) / 16;
+  const CONNECTION_DIST = 150;
+  const GRID_SIZE = 150;
+  const STAR_COUNT = Math.min((window.innerWidth + window.innerHeight) / 24, 120);
 
   const canvas: HTMLCanvasElement = document.querySelector("canvas");
   const context: CanvasRenderingContext2D = canvas.getContext("2d");
 
-  let scale = 1, // device pixel ratio
+  let scale = 1,
     width: number,
     height: number;
 
   let stars: any[] = [];
-
   let pointerX: number, pointerY: number;
-
   let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0005 };
-
   let touchInput = false;
+  let animating = true;
 
   generate();
   resize();
@@ -144,6 +144,15 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
   canvas.ontouchmove = onTouchMove;
   canvas.ontouchend = onMouseLeave;
   document.onmouseleave = onMouseLeave;
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      animating = false;
+    } else {
+      animating = true;
+      step();
+    }
+  });
 
   function generate() {
     for (let i = 0; i < STAR_COUNT; i++) {
@@ -162,24 +171,16 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
 
   function recycleStar(star) {
     let direction = "z";
-
     let vx = Math.abs(velocity.x),
       vy = Math.abs(velocity.y);
 
     if (vx > 1 || vy > 1) {
-      let axis;
+      let axis = vx > vy
+        ? (Math.random() < vx / (vx + vy) ? "h" : "v")
+        : (Math.random() < vy / (vx + vy) ? "v" : "h");
 
-      if (vx > vy) {
-        axis = Math.random() < vx / (vx + vy) ? "h" : "v";
-      } else {
-        axis = Math.random() < vy / (vx + vy) ? "v" : "h";
-      }
-
-      if (axis === "h") {
-        direction = velocity.x > 0 ? "l" : "r";
-      } else {
-        direction = velocity.y > 0 ? "t" : "b";
-      }
+      if (axis === "h") direction = velocity.x > 0 ? "l" : "r";
+      else direction = velocity.y > 0 ? "t" : "b";
     }
 
     star.z = STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE);
@@ -205,41 +206,60 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
 
   function resize() {
     scale = window.devicePixelRatio || 1;
-
     width = window.innerWidth * scale;
     height = window.innerHeight * scale;
-
     canvas.width = width;
     canvas.height = height;
-
     stars.forEach(placeStar);
   }
 
-  function step() {
-    context.clearRect(0, 0, width, height);
+  function buildGrid() {
+    const grid: Map<string, any[]> = new Map();
+    for (const star of stars) {
+      const gx = (star.x / GRID_SIZE) | 0;
+      const gy = (star.y / GRID_SIZE) | 0;
+      const key = `${gx},${gy}`;
+      const cell = grid.get(key);
+      if (cell) cell.push(star);
+      else grid.set(key, [star]);
+    }
+    return grid;
+  }
 
+  function getNeighbors(star, grid) {
+    const gx = (star.x / GRID_SIZE) | 0;
+    const gy = (star.y / GRID_SIZE) | 0;
+    const neighbors: any[] = [];
+    for (let dx = -1; dx <= 1; dx++) {
+      for (let dy = -1; dy <= 1; dy++) {
+        const cell = grid.get(`${gx + dx},${gy + dy}`);
+        if (cell) neighbors.push(...cell);
+      }
+    }
+    return neighbors;
+  }
+
+  function step() {
+    if (!animating) return;
+    context.clearRect(0, 0, width, height);
     update();
     render();
-
     requestAnimationFrame(step);
   }
 
   function update() {
     velocity.tx *= 0.16;
     velocity.ty *= 0.16;
-
     velocity.x += (velocity.tx - velocity.x) * 0.1;
     velocity.y += (velocity.ty - velocity.y) * 0.1;
 
-    stars.forEach((star) => {
+    for (const star of stars) {
       star.x += velocity.x * star.z;
       star.y += velocity.y * star.z;
-
       star.x += (star.x - width / 2) * velocity.z * star.z;
       star.y += (star.y - height / 2) * velocity.z * star.z;
       star.z += velocity.z;
 
-      // recycle when out of bounds
       if (
         star.x < -OVERFLOW_THRESHOLD ||
         star.x > width + OVERFLOW_THRESHOLD ||
@@ -248,81 +268,77 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
       ) {
         recycleStar(star);
       }
-    });
+    }
   }
 
   function render() {
-    // Draw connections between stars first
-    stars.forEach((star, index) => {
-      stars.forEach((otherStar, otherIndex) => {
-        if (index === otherIndex) return;
+    const grid = buildGrid();
+    const drawn = new Set<string>();
 
-        const dx = star.x - otherStar.x;
-        const dy = star.y - otherStar.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    for (const star of stars) {
+      const neighbors = getNeighbors(star, grid);
+      for (const other of neighbors) {
+        if (star === other) continue;
+        const key = star.x < other.x ? `${stars.indexOf(star)}-${stars.indexOf(other)}` : `${stars.indexOf(other)}-${stars.indexOf(star)}`;
+        if (drawn.has(key)) continue;
 
-        if (distance < 150) {
-          context.save();
-          context.globalAlpha = (1 - distance / 150) * 0.2;
+        const dx = star.x - other.x;
+        const dy = star.y - other.y;
+        const dist = dx * dx + dy * dy;
+
+        if (dist < CONNECTION_DIST * CONNECTION_DIST) {
+          drawn.add(key);
+          const alpha = (1 - Math.sqrt(dist) / CONNECTION_DIST) * 0.15;
+          context.globalAlpha = alpha;
           context.strokeStyle = STAR_COLOR;
           context.lineWidth = 0.5;
           context.beginPath();
           context.moveTo(star.x, star.y);
-          context.lineTo(otherStar.x, otherStar.y);
+          context.lineTo(other.x, other.y);
           context.stroke();
-          context.restore();
         }
-      });
-    });
+      }
+    }
 
-    // Draw stars
-    stars.forEach((star) => {
-      context.beginPath();
-      context.lineCap = "round";
-      context.lineWidth = STAR_SIZE * star.z * scale;
-      context.globalAlpha = 0.5 + 0.5 * Math.random();
+    for (const star of stars) {
+      context.globalAlpha = 0.5 + 0.5 * star.z;
       context.strokeStyle = STAR_COLOR;
+      context.lineWidth = STAR_SIZE * star.z * scale;
+      context.lineCap = "round";
 
-      context.beginPath();
-      context.moveTo(star.x, star.y);
-
-      var tailX = velocity.x * 2,
-        tailY = velocity.y * 2;
-
-      // stroke() wont work on an invisible line
+      let tailX = velocity.x * 2;
+      let tailY = velocity.y * 2;
       if (Math.abs(tailX) < 0.1) tailX = 0.5;
       if (Math.abs(tailY) < 0.1) tailY = 0.5;
 
+      context.beginPath();
+      context.moveTo(star.x, star.y);
       context.lineTo(star.x + tailX, star.y + tailY);
-
       context.stroke();
-    });
+    }
+
+    context.globalAlpha = 1;
   }
 
   function movePointer(x, y) {
     if (typeof pointerX === "number" && typeof pointerY === "number") {
       let ox = x - pointerX,
         oy = y - pointerY;
-
       velocity.tx = velocity.tx + (ox / 8) * scale * (touchInput ? 1 : -1);
       velocity.ty = velocity.ty + (oy / 8) * scale * (touchInput ? 1 : -1);
     }
-
     pointerX = x;
     pointerY = y;
   }
 
   function onMouseMove(event) {
     touchInput = false;
-
     movePointer(event.clientX, event.clientY);
   }
 
   function onTouchMove(event) {
     touchInput = true;
-
     movePointer(event.touches[0].clientX, event.touches[0].clientY);
-
     event.preventDefault();
   }
 
@@ -377,12 +393,12 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
   }
 
   body {
-    cursor: url("https://ani.cursors-4u.net/cursors/cur-13/cur1160.png"), auto;
+    cursor: crosshair;
   }
 
   button,
   a {
-    cursor: url("https://cur.cursors-4u.net/cursors/cur-1/cur1067.png");
+    cursor: pointer;
   }
 
   canvas {
