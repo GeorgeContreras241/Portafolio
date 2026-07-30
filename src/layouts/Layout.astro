@@ -16,9 +16,12 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV814N8KRX"></script>
@@ -120,7 +123,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
   const OVERFLOW_THRESHOLD = 50;
   const CONNECTION_DIST = 150;
   const GRID_SIZE = 150;
-  const STAR_COUNT = Math.min((window.innerWidth + window.innerHeight) / 24, 120);
+  const isMobile = window.matchMedia("(max-width: 768px)").matches || 'ontouchstart' in window;
+  const STAR_COUNT = isMobile ? 40 : Math.min((window.innerWidth + window.innerHeight) / 24, 120);
 
   const canvas: HTMLCanvasElement = document.querySelector("canvas");
   const context: CanvasRenderingContext2D = canvas.getContext("2d");
@@ -137,13 +141,17 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
 
   generate();
   resize();
-  step();
 
-  window.onresize = resize;
-  canvas.onmousemove = onMouseMove;
-  canvas.ontouchmove = onTouchMove;
-  canvas.ontouchend = onMouseLeave;
-  document.onmouseleave = onMouseLeave;
+  if (isMobile) {
+    renderStatic();
+  } else {
+    step();
+    window.onresize = resize;
+    canvas.onmousemove = onMouseMove;
+    canvas.ontouchmove = onTouchMove;
+    canvas.ontouchend = onMouseLeave;
+    document.onmouseleave = onMouseLeave;
+  }
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
@@ -315,6 +323,48 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
       context.moveTo(star.x, star.y);
       context.lineTo(star.x + tailX, star.y + tailY);
       context.stroke();
+    }
+
+    context.globalAlpha = 1;
+  }
+
+  function renderStatic() {
+    const grid = buildGrid();
+    const drawn = new Set<string>();
+
+    for (const star of stars) {
+      const neighbors = getNeighbors(star, grid);
+      for (const other of neighbors) {
+        if (star === other) continue;
+        const key = star.x < other.x ? `${stars.indexOf(star)}-${stars.indexOf(other)}` : `${stars.indexOf(other)}-${stars.indexOf(star)}`;
+        if (drawn.has(key)) continue;
+
+        const dx = star.x - other.x;
+        const dy = star.y - other.y;
+        const dist = dx * dx + dy * dy;
+
+        if (dist < CONNECTION_DIST * CONNECTION_DIST) {
+          drawn.add(key);
+          const alpha = (1 - Math.sqrt(dist) / CONNECTION_DIST) * 0.15;
+          context.globalAlpha = alpha;
+          context.strokeStyle = STAR_COLOR;
+          context.lineWidth = 0.5;
+          context.beginPath();
+          context.moveTo(star.x, star.y);
+          context.lineTo(other.x, other.y);
+          context.stroke();
+        }
+      }
+    }
+
+    for (const star of stars) {
+      context.globalAlpha = 0.5 + 0.5 * star.z;
+      context.strokeStyle = STAR_COLOR;
+      context.lineWidth = STAR_SIZE * star.z * scale;
+      context.lineCap = "round";
+      context.beginPath();
+      context.arc(star.x, star.y, STAR_SIZE * star.z * scale * 0.5, 0, Math.PI * 2);
+      context.fill();
     }
 
     context.globalAlpha = 1;
