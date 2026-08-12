@@ -1,61 +1,56 @@
-
-
-<header class="fixed top-0 w-full z-1100 bg-transparent ">
-  <nav
-    class="hidden md:flex container mx-auto px-6 py-3 justify-center text-white"
-  >
-    <div
-      class="flex space-x-18 bg-[#1a2238]/95 border border-gray-800/50 rounded-full px-8 py-3 shadow-xl shadow-blue-900/10 "
-    >
+<header class="hidden  md:flex  h-screen">
+  <nav class="flex items-center justify-center w-48 rounded-2xl  bg-editor-bg/95 backdrop-blur-sm shadow-xl shadow-black/40 py-6 px-2">
+    <div class="flex flex-col gap-1.5">
       <a
         aria-label="hero"
         href="#hero"
-        class="transition-all duration-300 font-medium text-sm uppercase tracking-wider relative group"
+        class="group relative flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
       >
         <span
           id="hero_span"
-          class="span-border absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-[w-full]"
+          class="span-border absolute -bottom-0.5 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300"
         ></span>
         Inicio
       </a>
       <a
         aria-label="projects"
         href="#projects"
-        class="hover:text-white transition-all duration-300 font-medium text-sm uppercase tracking-wider relative group"
+        class="group relative flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
       >
         <span
           id="projects_span"
-          class="span-border absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300"
+          class="span-border absolute -bottom-0.5 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300"
         ></span>
         Proyectos
       </a>
       <a
         aria-label="about"
         href="#about"
-        class="hover:text-white transition-all duration-300 font-medium text-sm uppercase tracking-wider relative group"
+        class="group relative flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
       >
         <span
           id="about_span"
-          class="span-border absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300"
+          class="span-border absolute -bottom-0.5 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300"
         ></span>
         Sobre mi
       </a>
       <a
         aria-label="skills"
         href="#skills"
-        class="hover:text-white transition-all duration-300 font-medium text-sm uppercase tracking-wider relative group"
+        class="group relative flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white transition-colors duration-200"
       >
         <span
           id="skills_span"
-          class="span-border absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300"
+          class="span-border absolute -bottom-0.5 left-0 h-0.5 w-0 bg-blue-400 transition-all duration-300"
         ></span>
         Skills
       </a>
     </div>
   </nav>
-  <nav
-    class="bg-[#0d101d] md:hidden mx-auto px-6 py-3 flex items-center justify-between text-white"
-  >
+</header>
+
+<header class="md:hidden top-0 w-full z-50">
+  <nav class="bg-[#0d101d] mx-auto px-6 py-3 flex items-center justify-between text-white">
     <span class="font-bold text-lg">Portafolio</span>
     <div class="menu flex flex-col gap-y-1.5 justify-center items-center">
       <input
@@ -67,11 +62,11 @@
       <div class="bg-white h-0.5 w-6 line"></div>
     </div>
     <section
-      class="md:hidden close desplegable absolute top-0 left-0 translate-x-[-120%] z-10 w-[70%]
+      class="close desplegable absolute top-0 left-0 translate-x-[-120%] z-10 w-[70%]
         h-screen transition-all duration-500 ease-out bg-[#0d101d]"
     >
       <div
-        class="flex flex-col gap-6 p-x-6 py-8 items-center justify-center h-full w-full"
+        class="flex flex-col gap-6 px-6 py-8 items-center justify-center h-full w-full"
       >
         <a
           aria-label="hero"
@@ -125,21 +120,18 @@
   document.addEventListener("DOMContentLoaded", () => {
     const navbarLinks = document.querySelectorAll("header nav a");
     const sections = Array.from(document.querySelectorAll("section")).filter(section => {
-      // Only include sections that have a corresponding nav link
       const id = section.id;
       return Array.from(navbarLinks).some(link => link.getAttribute("aria-label") === id);
     });
-
 
     const callback = (entries) => {
       entries.forEach((entry) => {
         const currentId = entry.target.id;
         if (entry.isIntersecting && entry.intersectionRatio > 0.2) {
-          
           navbarLinks.forEach((link) => {
             const linkTarget = link.getAttribute("aria-label");
             const isActive = linkTarget === currentId;
-            
+
             if (isActive) {
               link.classList.add("[&>span]:w-full", "text-blue-400");
               link.classList.remove("text-white");
@@ -147,7 +139,6 @@
               link.classList.remove("[&>span]:w-full", "text-blue-400");
               link.classList.add("text-white");
             }
-            
           });
         }
       });
@@ -162,17 +153,8 @@
     sections.forEach((section) => {
       observer.observe(section);
     });
-    
-    // Clean up observer when component unmounts
-    return () => observer.disconnect();
 
-    document.onvisibilitychange = () => {
-      if (document.visibilityState === "hidden") {
-        observer.disconnect();
-      } else {
-        sections.forEach((section) => observer.observe(section));
-      }
-    };
+    return () => observer.disconnect();
   });
 </script>
 
@@ -191,6 +173,16 @@
   .line {
     transform-origin: left;
     transition: all 0.5s;
+  }
+  .span-border {
+    width: 0;
+    height: 0.125rem;
+    border-radius: 9999px;
+    background: #60a5fa;
+    transition: width 0.3s ease;
+  }
+  .group:hover .span-border {
+    width: 100%;
   }
   .toggle:checked ~ .line:nth-child(2) {
     transform: rotate(45deg);

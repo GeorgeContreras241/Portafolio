@@ -8,7 +8,10 @@ interface Props {
   description: string;
 }
 const { description, title } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app');
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  "https://porta-tau.vercel.app",
+);
 ---
 
 <!doctype html>
@@ -24,10 +27,13 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV814N8KRX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV814N8KRX"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag("js", new Date());
       gtag("config", "G-XV814N8KRX");
     </script>
@@ -39,7 +45,10 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://porta-tau.vercel.app/og-image.png" />
+    <meta
+      property="og:image"
+      content="https://porta-tau.vercel.app/og-image.png"
+    />
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:site_name" content="George Contreras - Portafolio" />
     <meta property="og:locale" content="es_ES" />
@@ -48,391 +57,58 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://porta-tau.vercel.app/og-image.png" />
+    <meta
+      name="twitter:image"
+      content="https://porta-tau.vercel.app/og-image.png"
+    />
 
     <!-- Google -->
-    <meta name="google-site-verification" content="l-alFNWuLelVJHLkOp7CcYWDs8A36mnNqOr_VM9mQSg" />
+    <meta
+      name="google-site-verification"
+      content="l-alFNWuLelVJHLkOp7CcYWDs8A36mnNqOr_VM9mQSg"
+    />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "George Contreras",
-      "url": "https://porta-tau.vercel.app",
-      "jobTitle": "Frontend Developer",
-      "description": description,
-      "sameAs": [
-        "https://www.linkedin.com/in/georgecontreras241/",
-        "https://github.com/GeorgeContreras241"
-      ],
-      "knowsAbout": ["React", "Next.js", "JavaScript", "Tailwind CSS", "Astro", "Node.js", "MongoDB"],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Universidad de Cundinamarca"
-      }
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "George Contreras",
+        url: "https://porta-tau.vercel.app",
+        jobTitle: "Frontend Developer",
+        description: description,
+        sameAs: [
+          "https://www.linkedin.com/in/georgecontreras241/",
+          "https://github.com/GeorgeContreras241",
+        ],
+        knowsAbout: [
+          "React",
+          "Next.js",
+          "JavaScript",
+          "Tailwind CSS",
+          "Astro",
+          "Node.js",
+          "MongoDB",
+        ],
+        alumniOf: {
+          "@type": "EducationalOrganization",
+          name: "Universidad de Cundinamarca",
+        },
+      })}
+    />
 
     <title>{title}</title>
     <ClientRouter />
   </head>
-  <body class="min-h-screen flex flex-col text-white bg-editor-bg">
+  <body class="min-h-screen flex flex-row text-white bg-editor-bg overflow-hidden">
     <Nanvar />
-    <section
-      class="min-h-screen fixed inset-0"
-      style="background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 122, 204, 0.15), transparent), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(78, 201, 176, 0.06), transparent), var(--color-editor-bg);"
-    >
-      <canvas></canvas>
-    </section>
-    <main class="flex-1 md:space-y-32 md:py-24 py-16">
-      <div class="container mx-auto">
-        <slot />
-      </div>
+    <main class="w-full overflow-y-auto overflow-x-hidden mx-auto px-4 sm:px-8 md:px-12 lg:px-18 xl:px-28 2xl:px-32">
+      <slot />
+      <Footer />
     </main>
-    <Footer />
-
-    <!-- Canvas Toggle Button -->
-    <button
-      id="canvasToggle"
-      class="fixed bottom-4 right-4 z-50 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg transition-colors cursor-pointer"
-      title="Toggle Background Animation"
-    >
-      <svg
-        id="canvasIcon"
-        class="w-5 h-5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-        ></path>
-      </svg>
-    </button>
-
-    <script src="../lib/gsap.js"></script>
   </body>
 </html>
-
-<script>
-  const STAR_COLOR = "#00cfff";
-  const STAR_SIZE = 3;
-  const STAR_MIN_SCALE = 0.2;
-  const OVERFLOW_THRESHOLD = 50;
-  const CONNECTION_DIST = 150;
-  const GRID_SIZE = 150;
-  const isMobile = window.matchMedia("(max-width: 768px)").matches || 'ontouchstart' in window;
-  const STAR_COUNT = isMobile ? 40 : Math.min((window.innerWidth + window.innerHeight) / 24, 120);
-
-  const canvas: HTMLCanvasElement = document.querySelector("canvas");
-  const context: CanvasRenderingContext2D = canvas.getContext("2d");
-
-  let scale = 1,
-    width: number,
-    height: number;
-
-  let stars: any[] = [];
-  let pointerX: number, pointerY: number;
-  let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0005 };
-  let touchInput = false;
-  let animating = true;
-
-  generate();
-  resize();
-
-  if (isMobile) {
-    renderStatic();
-  } else {
-    step();
-    window.onresize = resize;
-    canvas.onmousemove = onMouseMove;
-    canvas.ontouchmove = onTouchMove;
-    canvas.ontouchend = onMouseLeave;
-    document.onmouseleave = onMouseLeave;
-  }
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      animating = false;
-    } else {
-      animating = true;
-      step();
-    }
-  });
-
-  function generate() {
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push({
-        x: 0,
-        y: 0,
-        z: STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE),
-      });
-    }
-  }
-
-  function placeStar(star) {
-    star.x = Math.random() * width;
-    star.y = Math.random() * height;
-  }
-
-  function recycleStar(star) {
-    let direction = "z";
-    let vx = Math.abs(velocity.x),
-      vy = Math.abs(velocity.y);
-
-    if (vx > 1 || vy > 1) {
-      let axis = vx > vy
-        ? (Math.random() < vx / (vx + vy) ? "h" : "v")
-        : (Math.random() < vy / (vx + vy) ? "v" : "h");
-
-      if (axis === "h") direction = velocity.x > 0 ? "l" : "r";
-      else direction = velocity.y > 0 ? "t" : "b";
-    }
-
-    star.z = STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE);
-
-    if (direction === "z") {
-      star.z = 0.1;
-      star.x = Math.random() * width;
-      star.y = Math.random() * height;
-    } else if (direction === "l") {
-      star.x = -OVERFLOW_THRESHOLD;
-      star.y = height * Math.random();
-    } else if (direction === "r") {
-      star.x = width + OVERFLOW_THRESHOLD;
-      star.y = height * Math.random();
-    } else if (direction === "t") {
-      star.x = width * Math.random();
-      star.y = -OVERFLOW_THRESHOLD;
-    } else if (direction === "b") {
-      star.x = width * Math.random();
-      star.y = height + OVERFLOW_THRESHOLD;
-    }
-  }
-
-  function resize() {
-    scale = window.devicePixelRatio || 1;
-    width = window.innerWidth * scale;
-    height = window.innerHeight * scale;
-    canvas.width = width;
-    canvas.height = height;
-    stars.forEach(placeStar);
-  }
-
-  function buildGrid() {
-    const grid: Map<string, any[]> = new Map();
-    for (const star of stars) {
-      const gx = (star.x / GRID_SIZE) | 0;
-      const gy = (star.y / GRID_SIZE) | 0;
-      const key = `${gx},${gy}`;
-      const cell = grid.get(key);
-      if (cell) cell.push(star);
-      else grid.set(key, [star]);
-    }
-    return grid;
-  }
-
-  function getNeighbors(star, grid) {
-    const gx = (star.x / GRID_SIZE) | 0;
-    const gy = (star.y / GRID_SIZE) | 0;
-    const neighbors: any[] = [];
-    for (let dx = -1; dx <= 1; dx++) {
-      for (let dy = -1; dy <= 1; dy++) {
-        const cell = grid.get(`${gx + dx},${gy + dy}`);
-        if (cell) neighbors.push(...cell);
-      }
-    }
-    return neighbors;
-  }
-
-  function step() {
-    if (!animating) return;
-    context.clearRect(0, 0, width, height);
-    update();
-    render();
-    requestAnimationFrame(step);
-  }
-
-  function update() {
-    velocity.tx *= 0.16;
-    velocity.ty *= 0.16;
-    velocity.x += (velocity.tx - velocity.x) * 0.1;
-    velocity.y += (velocity.ty - velocity.y) * 0.1;
-
-    for (const star of stars) {
-      star.x += velocity.x * star.z;
-      star.y += velocity.y * star.z;
-      star.x += (star.x - width / 2) * velocity.z * star.z;
-      star.y += (star.y - height / 2) * velocity.z * star.z;
-      star.z += velocity.z;
-
-      if (
-        star.x < -OVERFLOW_THRESHOLD ||
-        star.x > width + OVERFLOW_THRESHOLD ||
-        star.y < -OVERFLOW_THRESHOLD ||
-        star.y > height + OVERFLOW_THRESHOLD
-      ) {
-        recycleStar(star);
-      }
-    }
-  }
-
-  function render() {
-    const grid = buildGrid();
-    const drawn = new Set<string>();
-
-    for (const star of stars) {
-      const neighbors = getNeighbors(star, grid);
-      for (const other of neighbors) {
-        if (star === other) continue;
-        const key = star.x < other.x ? `${stars.indexOf(star)}-${stars.indexOf(other)}` : `${stars.indexOf(other)}-${stars.indexOf(star)}`;
-        if (drawn.has(key)) continue;
-
-        const dx = star.x - other.x;
-        const dy = star.y - other.y;
-        const dist = dx * dx + dy * dy;
-
-        if (dist < CONNECTION_DIST * CONNECTION_DIST) {
-          drawn.add(key);
-          const alpha = (1 - Math.sqrt(dist) / CONNECTION_DIST) * 0.15;
-          context.globalAlpha = alpha;
-          context.strokeStyle = STAR_COLOR;
-          context.lineWidth = 0.5;
-          context.beginPath();
-          context.moveTo(star.x, star.y);
-          context.lineTo(other.x, other.y);
-          context.stroke();
-        }
-      }
-    }
-
-    for (const star of stars) {
-      context.globalAlpha = 0.5 + 0.5 * star.z;
-      context.strokeStyle = STAR_COLOR;
-      context.lineWidth = STAR_SIZE * star.z * scale;
-      context.lineCap = "round";
-
-      let tailX = velocity.x * 2;
-      let tailY = velocity.y * 2;
-      if (Math.abs(tailX) < 0.1) tailX = 0.5;
-      if (Math.abs(tailY) < 0.1) tailY = 0.5;
-
-      context.beginPath();
-      context.moveTo(star.x, star.y);
-      context.lineTo(star.x + tailX, star.y + tailY);
-      context.stroke();
-    }
-
-    context.globalAlpha = 1;
-  }
-
-  function renderStatic() {
-    const grid = buildGrid();
-    const drawn = new Set<string>();
-
-    for (const star of stars) {
-      const neighbors = getNeighbors(star, grid);
-      for (const other of neighbors) {
-        if (star === other) continue;
-        const key = star.x < other.x ? `${stars.indexOf(star)}-${stars.indexOf(other)}` : `${stars.indexOf(other)}-${stars.indexOf(star)}`;
-        if (drawn.has(key)) continue;
-
-        const dx = star.x - other.x;
-        const dy = star.y - other.y;
-        const dist = dx * dx + dy * dy;
-
-        if (dist < CONNECTION_DIST * CONNECTION_DIST) {
-          drawn.add(key);
-          const alpha = (1 - Math.sqrt(dist) / CONNECTION_DIST) * 0.15;
-          context.globalAlpha = alpha;
-          context.strokeStyle = STAR_COLOR;
-          context.lineWidth = 0.5;
-          context.beginPath();
-          context.moveTo(star.x, star.y);
-          context.lineTo(other.x, other.y);
-          context.stroke();
-        }
-      }
-    }
-
-    for (const star of stars) {
-      context.globalAlpha = 0.5 + 0.5 * star.z;
-      context.strokeStyle = STAR_COLOR;
-      context.lineWidth = STAR_SIZE * star.z * scale;
-      context.lineCap = "round";
-      context.beginPath();
-      context.arc(star.x, star.y, STAR_SIZE * star.z * scale * 0.5, 0, Math.PI * 2);
-      context.fill();
-    }
-
-    context.globalAlpha = 1;
-  }
-
-  function movePointer(x, y) {
-    if (typeof pointerX === "number" && typeof pointerY === "number") {
-      let ox = x - pointerX,
-        oy = y - pointerY;
-      velocity.tx = velocity.tx + (ox / 8) * scale * (touchInput ? 1 : -1);
-      velocity.ty = velocity.ty + (oy / 8) * scale * (touchInput ? 1 : -1);
-    }
-    pointerX = x;
-    pointerY = y;
-  }
-
-  function onMouseMove(event) {
-    touchInput = false;
-    movePointer(event.clientX, event.clientY);
-  }
-
-  function onTouchMove(event) {
-    touchInput = true;
-    movePointer(event.touches[0].clientX, event.touches[0].clientY);
-    event.preventDefault();
-  }
-
-  function onMouseLeave() {
-    pointerX = null;
-    pointerY = null;
-  }
-
-  // Canvas Toggle Functionality
-  const canvasToggle = document.getElementById(
-    "canvasToggle",
-  ) as HTMLButtonElement;
-  const canvasIcon = document.getElementById("canvasIcon") as HTMLElement;
-  let isCanvasActive = true;
-
-  if (canvasToggle && canvasIcon) {
-    canvasToggle.addEventListener("click", () => {
-      isCanvasActive = !isCanvasActive;
-
-      document.querySelectorAll("section canvas").forEach((canvas) => {
-        const section = canvas.parentElement;
-        if (section) {
-          if (isCanvasActive) {
-            section.style.display = "block";
-            // Restart animation
-            resize();
-            step();
-          } else {
-            section.style.display = "none";
-          }
-        }
-      });
-
-      // Update icon
-      if (isCanvasActive) {
-        canvasIcon.innerHTML =
-          '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>';
-      } else {
-        canvasIcon.innerHTML =
-          '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>';
-      }
-    });
-  }
-</script>
 
 <style>
   html,
@@ -449,11 +125,5 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://porta-tau.vercel.app')
   button,
   a {
     cursor: pointer;
-  }
-
-  canvas {
-    position: fixed;
-    width: 100%;
-    height: 100%;
   }
 </style>

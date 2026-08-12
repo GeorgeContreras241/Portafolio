@@ -1,46 +1,80 @@
-<div
-    class="bg-editor-bg rounded-xl shadow-lg p-4 font-mono text-sm text-text-default border border-transparent hover:border-keyword/30 transition-all"
->
-    <div class="flex items-center mb-3 text-xs text-text-default/60">
-        <span class="mr-2 text-red-500">❤</span>
-        <span>skills.js</span>
+<div class="group relative w-full">
+  <!-- Glow decorativo -->
+  <div class="absolute -inset-px rounded-2xl bg-gradient-to-br from-object-global/20 via-transparent to-keyword/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true"></div>
+
+  <div class="relative bg-editor-bg rounded-2xl border border-sidebar-bg shadow-2xl shadow-black/50 overflow-hidden transition-all duration-300 group-hover:border-object-global/40 group-hover:-translate-y-1">
+    <!-- Barra de título tipo ventana -->
+    <div class="flex items-center gap-2 px-4 py-3 bg-sidebar-bg/80 border-b border-sidebar-bg">
+      <span class="flex gap-1.5" aria-hidden="true">
+        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+      </span>
+      <span class="ml-2 text-xs text-text-default/60 font-mono">skills.js</span>
+      <span class="ml-auto flex items-center gap-1.5 text-[10px] text-comment font-mono">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+        live
+      </span>
     </div>
 
-    <div class="space-y-1">
-        <div>
-            <span class="text-boolean">const</span>
-            <span class="text-variable ml-1">Skills</span>
-            <span class="text-text-default/50 ml-1">=</span>
-            <span class="text-text-default/50 ml-1">{"{"}</span>
-            <div class="ml-4">
-                <span class="text-variable">frontend</span>
-                <span class="text-text-default/50">:</span>
-                <span class="text-[#CE9178] ml-1">
-                    ["HTML", "CSS", "JavaScript", "React","NextJS","Astro","Tailwind","GSAP"]
-                </span>
-                <span class="text-text-default/50">,</span>
-            </div>
-            <div class="ml-4">
-                <span class="text-variable">backend</span>
-                <span class="text-text-default/50">:</span>
-                <span class="text-[#CE9178] ml-1">
-                    ["Node.js", "Express", "MongoDB"]
-                </span>
-                <span class="text-text-default/50">,</span>
-            </div>
-            <div class="ml-4">
-                <span class="text-variable">tools</span>
-                <span class="text-text-default/50">:</span>
-                <span class="text-[#CE9178] ml-1">
-                    ["GitHub", "VS Code"]
-                </span>
-            </div>
-            <div>
-                <span class="text-text-default/50">{"}"}</span>
-                <div class="mt-3 text-comment text-xs">
-                    // Siempre aprendiendo cosas nuevas 🚀
-                </div>
-            </div>
+    <!-- Código -->
+    <div class="p-5 font-mono text-[13px] leading-6">
+      <div class="flex gap-4">
+        <!-- Números de línea -->
+        <div class="select-none text-right text-text-default/20" aria-hidden="true">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>7</div>
         </div>
+
+        <!-- Contenido -->
+        <div class="flex-1 min-w-0">
+          <div>
+            <span class="text-keyword">const</span>
+            <span class="text-variable ml-2">Skills</span>
+            <span class="text-text-default/50 mx-1">=</span>
+            <span class="text-text-default/50">{"{"}</span>
+          </div>
+
+          <div class="ml-4">
+            <span class="text-variable">frontend</span>
+            <span class="text-text-default/50">:</span>
+            <span class="text-string ml-1">["HTML","CSS","JavaScript","React","NextJS","Astro","Tailwind","GSAP"]</span>
+            <span class="text-text-default/50">,</span>
+          </div>
+
+          <div class="ml-4">
+            <span class="text-variable">backend</span>
+            <span class="text-text-default/50">:</span>
+            <span class="text-string ml-1">["Node.js","Express","MongoDB"]</span>
+            <span class="text-text-default/50">,</span>
+          </div>
+
+          <div class="ml-4">
+            <span class="text-variable">tools</span>
+            <span class="text-text-default/50">:</span>
+            <span class="text-string ml-1">["GitHub","VS Code"]</span>
+          </div>
+
+          <div>
+            <span class="text-text-default/50">{"}"}</span>
+          </div>
+
+          <div class="mt-2 text-comment">
+            <span class="text-text-default/50">//</span> Siempre aprendiendo cosas nuevas 🚀
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Barra de estado tipo VS Code -->
+    <div class="flex items-center justify-between px-4 py-1.5 bg-sidebar-bg/60 border-t border-sidebar-bg text-[10px] font-mono text-text-default/40">
+      <span>UTF-8</span>
+      <span class="text-boolean">JavaScript</span>
+    </div>
+  </div>
 </div>

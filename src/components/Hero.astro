@@ -5,109 +5,67 @@ import Link_A from "./ui/Link_A.astro";
 import Code from "./icons/Code.astro";
 import Email from "./icons/Email.astro";
 import Skill_Object from "./ui/Skill_Object.astro";
+import Hero_Contact from "./ui/Hero_Contact.astro";
 ---
 
 <section
   id="hero"
-  class="relative w-full mx-auto max-w-7xl sm:px-6 lg:px-8 md:h-[80vh] h-[90vh] flex items-center
-   justify-center"
+  class="flex flex-col sm:flex-col md:flex-col lg:flex-col xl:flex-row place-items-center min-h-[calc(100vh-6rem)]"
 >
-  <div class="w-full max-w-4xl mx-auto">
-    <div
-      class="bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50
-    overflow-hidden transition-all duration-300 hover:border-boolean/30 hover:shadow-lg
-    hover:shadow--boolean/5 p-4 md:p-10"
-    >
-      <div class="mb-8">
-        <div class="flex items-center gap-1 md:gap-4 mb-2">
-          <Code class="h-2 w-2 md:h-3 md:w-3 text-object-global" />
-          <span class="title text-[.9rem] font-mono text-variable"
-            >// <span class="text-comment">Frontend Developer</span></span
+  <div>
+    <div>
+      <div
+        class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-sidebar-bg bg-sidebar-bg/50 font-mono text-sm w-fit"
+      >
+        <Code class="w-3 h-3" />
+        <span class="text-gray-400">//</span>
+        <span class="text-gray-500">Hola, soy George Contreras</span>
+      </div>
+
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mt-4"
+      >
+        Full Stack Developer
+      </h1>
+
+      <p class="mt-3 text-xl md:text-[.9rem] font-semibold">
+        <span
+          class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-object-global"
+        >
+          MERN Stack
+        </span>
+      </p>
+
+      <p class="text-lg md:text-[.95rem] text-text-default/80 leading-relaxed mt-4 w-[90%]">
+        Construyo interfaces modernas, rápidas y responsivas con
+        <span class="text-boolean">React</span>,
+        <span class="text-boolean">Next.js</span> y
+        <span class="text-boolean">Tailwind CSS</span>. Disponible para
+        trabajar.
+      </p>
+
+      <div class="flex items-center gap-6 mt-8">
+        <div>
+          <span class="block text-2xl font-bold text-blue-700">3</span>
+          <span
+            class="block text-xs text-text-default/50 uppercase tracking-wider mt-1"
+            >Proyectos</span
           >
         </div>
-
-        <h1
-          class="subtitle text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg h-20"
-        >
-          George Contreras
-        </h1>
-
-        <p class="subtitle text-md md:text-lg text-text-default/80 mb-4 max-w-2xl">
-          Construyo interfaces modernas, rápidas y responsivas con
-          <span class="text-boolean">React</span>,
-          <span class="text-boolean">Next.js</span> y
-          <span class="text-boolean">Tailwind CSS</span>.
-          Disponible para trabajar.
-        </p>
-
-        <div class="subtitle flex flex-wrap items-center gap-3 mb-6 text-xs md:text-sm font-mono text-text-default/60">
-          <span class="flex items-center gap-1.5">
-            <span class="text-number">3</span> proyectos
-          </span>
-          <span class="text-text-default/20">|</span>
-          <!-- <span class="flex items-center gap-1.5">
-            <span class="text-number">2</span> apps en producción
-          </span>
-          <span class="text-text-default/20">|</span> -->
-          <span class="flex items-center gap-1.5">
-            <span class="text-number">1</span> certificaciones
-          </span>
-        </div>
-
-        <div class="opacity-60 hover:opacity-100 transition-opacity duration-300">
-          <Skill_Object />
+        <span class="w-px h-10 bg-sidebar-bg"></span>
+        <div>
+          <span class="block text-2xl font-bold text-blue-700">1</span>
+          <span
+            class="block text-xs text-text-default/50 uppercase tracking-wider mt-1"
+            >Certificación</span
+          >
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="flex flex-wrap items-center gap-2 mt-2">
-      <a
-        class="links md:px-6 px-2.5 py-2.5 bg-variable text-xs md:text-[15px] text-editor-bg font-semibold rounded-md hover:cursor-pointer hover:brightness-110
-        hover:scale-105 transition-all duration-200"
-        href="#projects"
-      >
-        Ver mis proyectos
-      </a>
-      <a
-        class="links md:px-6 px-2.5 py-2.5 bg-sidebar-bg text-text-default text-xs md:text-[15px] font-semibold rounded-md hover:cursor-pointer hover:bg-sidebar-bg/80
-        hover:scale-105 transition-all duration-200"
-        href="./CV.pdf"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Descargar CV
-      </a>
-      <div class="flex items-center gap-2 ml-auto">
-        <Link_A
-          classStyle="group links flex items-center gap-x-4 text-sm md:px-4 px-2.5 py-2.5 bg-sidebar-bg text-text-default font-semibold rounded-md hover:bg-sidebar-bg/80 hover:scale-105 transition-all duration-200"
-          href="https://www.linkedin.com/in/georgecontreras241/"
-          title="Mi LinkedIn"
-          aria-label="Visitar Mi LinkedIn"
-        >
-          <LinkedIn
-            class="md:w-4 md:h-4 w-4 h-4 transition-transform duration-200 group-hover:scale-120 transition-all"
-          />
-        </Link_A>
-        <Link_A
-          classStyle="group links flex items-center gap-x-4 text-sm md:px-4 px-2.5 py-2.5 bg-sidebar-bg text--default font-semibold rounded-md hover:cursor-pointer hover:bg-sidebar-bg/80 hover:scale-105 transition-all duration-200"
-          href="https://github.com/GeorgeContreras241"
-          title="Git Hub"
-          aria-label="Visitar Git Hub"
-        >
-          <GitHub
-            class="md:w-4 md:h-4 w-4 h-4 transition-transform duration-200 group-hover:scale-120 transition-all"
-          />
-        </Link_A>
-        <a
-          class="links md:px-4 px-2.5 py-2.5 bg-sidebar-bg text-text-default font-semibold rounded-md hover:cursor-pointer hover:bg-sidebar-bg/80
-          hover:scale-105 transition-all duration-200"
-          href="mailto:georgecontreras241@gmail.com"
-          title="Enviar email"
-          aria-label="Enviar email"
-        >
-          <Email class="md:w-4 md:h-4 w-4 h-4" />
-        </a>
-      </div>
-    </div>
+  <div class="flex flex-col items-center gap-6">
+    <Skill_Object />
+    <Hero_Contact />
   </div>
 </section>

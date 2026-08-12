@@ -1,0 +1,51 @@
+---
+import Link_A from "./Link_A.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import GitHub from "../icons/GitHub.astro";
+import Email from "../icons/Email.astro";
+---
+
+<section class="flex flex-row justify-between gap-2 w-full">
+    <article>
+        <a
+            href="#projects"
+            class="px-4 py-2 bg-variable text-editor-bg text-sm font-semibold rounded-md hover:brightness-110 transition"
+        >
+            Ver mis proyectos
+        </a>
+        <a
+            href="./CV.pdf"
+            target="_blank"
+            rel="noreferrer"
+            class="px-4 py-2 bg-sidebar-bg text-text-default text-sm font-semibold rounded-md hover:brightness-125 transition"
+        >
+            Descargar CV
+        </a>
+    </article>
+    <div class="flex flex-row items-center gap-3">
+        <Link_A
+            href="https://www.linkedin.com/in/georgecontreras241/"
+            title="Mi LinkedIn"
+            aria-label="Visitar Mi LinkedIn"
+            classStyle="transition-transform duration-200 hover:scale-110"
+        >
+            <LinkedIn class="w-6 h-6" />
+        </Link_A>
+        <Link_A
+            href="https://github.com/GeorgeContreras241"
+            title="Git Hub"
+            aria-label="Visitar Git Hub"
+            classStyle="transition-transform duration-200 hover:scale-110"
+        >
+            <GitHub class="w-6 h-6" />
+        </Link_A>
+        <a
+            href="mailto:georgecontreras241@gmail.com"
+            title="Enviar email"
+            aria-label="Enviar email"
+            class="transition-transform duration-200 hover:scale-110"
+        >
+            <Email class="w-6 h-6" />
+        </a>
+    </div>
+</section>
