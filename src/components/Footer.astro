@@ -4,42 +4,56 @@ import LinkedIn from "./icons/LinkedIn.astro";
 import Github from "./icons/GitHub.astro";
 ---
 
-<footer
-  class="flex flex-row items-center justify-between lg:max-w-5xl md:max-w-2xl w-full
-  mx-auto p-8"
->
-  <span class="text-gray-100 md:text-sm text-xs"
-    >@2025 Desarrollado con ❤.</span
+<footer class="mt-16 border-t border-sidebar-bg">
+  <div
+    class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 px-4"
   >
-  <nav class="flex gap-2">
-    <a
-      href="https://www.linkedin.com/in/georgecontreras241"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Perfil de LinkedIn"
-      title="LinkedIn"
-    >
-      <LinkedIn class="h-6 w-6 hover:scale-[1.15] transition duration-500" />
-    </a>
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1.5 font-mono text-xs">
+        <span class="text-comment">//</span>
+        <span class="text-text-default/70">
+          @2026 Desarrollado con <span class="text-red-500">❤</span>
+        </span>
+      </span>
+      <span class="text-text-default/30 text-sm hidden md:inline">|</span>
+      <span class="text-text-default/40 font-mono text-xs hidden md:inline">
+        George Contreras
+      </span>
+    </div>
 
-    <a
-      href="https://github.com/GeorgeContreras241"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Perfil de GitHub"
-      title="GitHub"
-    >
-      <Github class="h-6 w-6 hover:scale-[1.15] transition duration-500" />
-    </a>
+    <nav class="flex items-center gap-2">
+      <a
+        href="https://www.linkedin.com/in/georgecontreras241"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Perfil de LinkedIn"
+        title="LinkedIn"
+        class="p-2 rounded-lg bg-sidebar-bg/60 border border-sidebar-bg hover:border-object-global/40 hover:text-object-global transition-all duration-300"
+      >
+        <LinkedIn class="h-5 w-5" />
+      </a>
 
-    <a
-      href="mailto:georgecontreras241@gmail.com"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Enviar correo electrónico"
-      title="Email"
-    >
-      <Email class="h-6 w-6 hover:scale-[1.15] transition duration-500" />
-    </a>
-  </nav>
+      <a
+        href="https://github.com/GeorgeContreras241"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Perfil de GitHub"
+        title="GitHub"
+        class="p-2 rounded-lg bg-sidebar-bg/60 border border-sidebar-bg hover:border-variable/40 hover:text-variable transition-all duration-300"
+      >
+        <Github class="h-5 w-5" />
+      </a>
+
+      <a
+        href="mailto:georgecontreras241@gmail.com"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Enviar correo electrónico"
+        title="Email"
+        class="p-2 rounded-lg bg-sidebar-bg/60 border border-sidebar-bg hover:border-string/40 hover:text-string transition-all duration-300"
+      >
+        <Email class="h-5 w-5" />
+      </a>
+    </nav>
+  </div>
 </footer>

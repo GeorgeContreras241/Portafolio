@@ -40,9 +40,9 @@ const sections = [
 
 <section
   id="skills"
-  class="w-full mx-auto max-w-7xl sm:px-6 lg:px-8 py-16 md:py-24"
+  class="py-10 md:py-16"
 >
-  <div class="max-w-4xl mx-auto text-center mb-16 md:mb-20">
+  <div class="text-center mb-10 md:mb-14">
     <h2
       class="text-xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg mb-4 gsap-title"
     >
@@ -55,30 +55,31 @@ const sections = [
 
   {
     sections.map((section) => (
-      <div class="mb-12 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-2xl border border-sidebar-bg/50 overflow-hidden">
-        <div class="p-4 border-b border-sidebar-bg/50 bg-gradient-to-r from-editor-bg to-selection-bg/10">
-          <h3 class="text-lg font-bold text-text-default">
+      <div class="mb-8 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-xl border border-white/5 overflow-hidden">
+        <div class="p-3 border-b border-sidebar-bg/50 bg-editor-bg flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-red-500"></span>
+          <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <h3 class="text-base font-bold text-text-default ml-2">
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
               {section.title}
             </span>
           </h3>
-          <p class="mt-1 text-gray-400 text-sm">{section.subtitle}</p>
+          <span class="text-gray-400 text-xs">{section.subtitle}</span>
         </div>
         <div class="p-3">
-          <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <ul class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2.5">
             {section.skills.map((tech) => {
               const Icon = getIconComponent(tech.icon);
               return (
-                <li class="group relative p-4 bg-sidebar-bg/60 rounded-xl border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:shadow-object-global/5">
-                  <div class="flex items-center flex-wrap justify-center gap-3">
-                    <div class="p-2.5 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
-                      {Icon && <Icon class="w-6 h-6 text-object-global group-hover:text-variable transition-colors duration-300" />}
+                <li class="group relative p-3 bg-sidebar-bg/60 rounded-lg border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.03]">
+                  <div class="flex flex-col items-center justify-center gap-2">
+                    <div class="p-2 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
+                      {Icon && <Icon class="w-5 h-5 text-object-global group-hover:text-variable transition-colors duration-300" />}
                     </div>
-                    <div class="min-w-[50px] w-full flex items-center flex-col justify-center">
-                      <h4 class="font-medium text-text-default group-hover:text-variable transition-colors duration-300">
-                        {tech.name}
-                      </h4>
-                    </div>
+                    <h4 class="text-xs font-medium text-text-default text-center leading-tight group-hover:text-variable transition-colors duration-300">
+                      {tech.name}
+                    </h4>
                   </div>
                 </li>
               );

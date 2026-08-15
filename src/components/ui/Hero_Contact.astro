@@ -5,11 +5,11 @@ import GitHub from "../icons/GitHub.astro";
 import Email from "../icons/Email.astro";
 ---
 
-<section class="flex flex-row justify-between gap-2 w-full">
-    <article>
+<section class="flex flex-row justify-between gap-4 w-full">
+    <article class="flex gap-2 w-full sm:w-auto">
         <a
             href="#projects"
-            class="px-4 py-2 bg-variable text-editor-bg text-sm font-semibold rounded-md hover:brightness-110 transition"
+            class="px-3 py-1.5 bg-blue-700 text-gray-200 text-xs font-semibold rounded-md hover:brightness-110 transition whitespace-nowrap flex-1 text-center"
         >
             Ver mis proyectos
         </a>
@@ -17,7 +17,7 @@ import Email from "../icons/Email.astro";
             href="./CV.pdf"
             target="_blank"
             rel="noreferrer"
-            class="px-4 py-2 bg-sidebar-bg text-text-default text-sm font-semibold rounded-md hover:brightness-125 transition"
+            class="px-3 py-1.5 bg-sidebar-bg text-text-default text-xs font-semibold rounded-md hover:brightness-125 transition whitespace-nowrap flex-1 text-center"
         >
             Descargar CV
         </a>
@@ -29,7 +29,7 @@ import Email from "../icons/Email.astro";
             aria-label="Visitar Mi LinkedIn"
             classStyle="transition-transform duration-200 hover:scale-110"
         >
-            <LinkedIn class="w-6 h-6" />
+            <LinkedIn class="w-5 h-5" />
         </Link_A>
         <Link_A
             href="https://github.com/GeorgeContreras241"
@@ -37,7 +37,7 @@ import Email from "../icons/Email.astro";
             aria-label="Visitar Git Hub"
             classStyle="transition-transform duration-200 hover:scale-110"
         >
-            <GitHub class="w-6 h-6" />
+            <GitHub class="w-5 h-5" />
         </Link_A>
         <a
             href="mailto:georgecontreras241@gmail.com"
@@ -45,7 +45,7 @@ import Email from "../icons/Email.astro";
             aria-label="Enviar email"
             class="transition-transform duration-200 hover:scale-110"
         >
-            <Email class="w-6 h-6" />
+            <Email class="w-5 h-5" />
         </a>
     </div>
 </section>
