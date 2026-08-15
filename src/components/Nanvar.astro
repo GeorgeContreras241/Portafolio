@@ -1,5 +1,5 @@
-<header class="hidden  md:flex  h-screen">
-  <nav class="flex items-center justify-center w-48 rounded-2xl  bg-editor-bg/95 backdrop-blur-sm shadow-xl shadow-black/40 py-6 px-2">
+<header class="hidden  md:flex items-center pl-2  h-screen">
+  <nav class="flex items-center justify-center w-48 h-fit py-6 px-2">
     <div class="flex flex-col gap-1.5">
       <a
         aria-label="hero"
@@ -49,20 +49,20 @@
   </nav>
 </header>
 
-<header class="md:hidden top-0 w-full z-50">
-  <nav class="bg-[#0d101d] mx-auto px-6 py-3 flex items-center justify-between text-white">
+<header class="fixed top-0 left-0 w-full z-50 md:hidden">
+  <nav id="mobile-nav" class="bg-transparent px-6 py-3 flex items-center justify-between text-white transition-all duration-300">
     <span class="font-bold text-lg">Portafolio</span>
-    <div class="menu flex flex-col gap-y-1.5 justify-center items-center">
+    <div class="menu relative flex flex-col gap-y-1.5 justify-center items-center">
       <input
         type="checkbox"
-        class="toggle peer absolute z-[1] opacity-0 w-6 h-6"
+        class="toggle peer absolute inset-0 z-10 opacity-0 w-6 h-6 cursor-pointer"
       />
       <div class="bg-white h-0.5 w-6 line"></div>
       <div class="bg-white h-0.5 w-6 line"></div>
       <div class="bg-white h-0.5 w-6 line"></div>
     </div>
     <section
-      class="close desplegable absolute top-0 left-0 translate-x-[-120%] z-10 w-[70%]
+      class="close desplegable fixed top-0 left-0 translate-x-[-120%] z-20 w-[70%]
         h-screen transition-all duration-500 ease-out bg-[#0d101d]"
     >
       <div
@@ -159,6 +159,21 @@
 </script>
 
 <script>
+  const mobileNav = document.getElementById("mobile-nav");
+  const scrollContainer = document.querySelector("main");
+  const applyBlur = () => {
+    const offset = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+    if (offset > 40) {
+      mobileNav?.classList.add("bg-[#0d101d]/80", "backdrop-blur-md", "shadow-lg");
+    } else {
+      mobileNav?.classList.remove("bg-[#0d101d]/80", "backdrop-blur-md", "shadow-lg");
+    }
+  };
+  scrollContainer?.addEventListener("scroll", applyBlur, { passive: true });
+  applyBlur();
+</script>
+
+<script>
   const toggle = document.querySelector(".toggle");
   toggle?.addEventListener("input", (event) => {
     const desplegable = document.querySelector(".desplegable");
@@ -167,6 +182,13 @@
     } else {
       desplegable?.classList.remove("translate-x-[0%]");
     }
+  });
+
+  document.querySelectorAll(".desplegable a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggle.checked = false;
+      toggle.dispatchEvent(new Event("input"));
+    });
   });
 </script>
 <style>
