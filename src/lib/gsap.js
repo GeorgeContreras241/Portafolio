@@ -3,6 +3,74 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Animated aurora background - smooth blobs
+const blobs = document.querySelectorAll(".hero-blob");
+if (blobs.length) {
+  const colors = [
+    "rgba(59,130,246,0.25)",
+    "rgba(16,185,129,0.20)",
+    "rgba(147,51,234,0.18)",
+  ];
+  const sizes = [
+    { w: 550, h: 550 },
+    { w: 420, h: 420 },
+    { w: 480, h: 480 },
+  ];
+  blobs.forEach((blob, i) => {
+    const { w, h } = sizes[i];
+    blob.style.width = w + "px";
+    blob.style.height = h + "px";
+    blob.style.background = colors[i];
+    gsap.set(blob, { x: -w / 2, y: -h / 2, opacity: 0.6 });
+  });
+
+  const tl = gsap.timeline({ repeat: -1, defaults: { ease: "sine.inOut" } });
+  tl.to(blobs[0], { xPercent: 120, yPercent: 60, duration: 10 }, 0)
+    .to(blobs[1], { xPercent: 60, yPercent: 140, duration: 12 }, 0)
+    .to(blobs[2], { xPercent: 160, yPercent: 40, duration: 14 }, 0)
+    .to(blobs[0], { xPercent: 60, yPercent: 140, duration: 10 }, "+=1")
+    .to(blobs[1], { xPercent: 160, yPercent: 60, duration: 12 }, "<")
+    .to(blobs[2], { xPercent: 60, yPercent: 150, duration: 14 }, "<")
+    .to(blobs[0], { xPercent: 0, yPercent: 0, duration: 10 }, "+=1")
+    .to(blobs[1], { xPercent: 0, yPercent: 0, duration: 12 }, "<")
+    .to(blobs[2], { xPercent: 0, yPercent: 0, duration: 14 }, "<");
+}
+
+// About avatar mouse parallax
+const aboutAvatar = document.querySelector(".about-avatar");
+if (aboutAvatar) {
+  const avatarInner = aboutAvatar.querySelector(".relative.group");
+  const avatarImg = aboutAvatar.querySelector("img");
+  if (avatarInner && avatarImg) {
+    const strength = 12;
+    aboutAvatar.addEventListener("mousemove", (e) => {
+      const rect = aboutAvatar.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      gsap.to(avatarInner, {
+        x: x * strength,
+        y: y * strength,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+      gsap.to(avatarImg, {
+        x: x * strength * 0.2,
+        y: y * strength * 0.2,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    });
+    aboutAvatar.addEventListener("mouseleave", () => {
+      gsap.to([avatarInner, avatarImg], {
+        x: 0,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    });
+  }
+}
+
 // Hero section animations - Optimized
 const heroTl = gsap.timeline({ defaults: { duration: 0.3, ease: "power1.out" }});
 
@@ -96,18 +164,3 @@ document.querySelectorAll("#skills h2, #about h2, #projects h2").forEach(header 
 animateOnScroll(document.querySelectorAll('.image'), (img) => {
   gsap.to(img, { y: 0, opacity: 1, duration: 0.4, ease: 'power1.out' });
 });
-
-// Simplified background animation - much more performant
-const heroBg = document.querySelector('.hero-bg');
-if (heroBg) {
-  // Use CSS transitions instead of GSAP for background
-  heroBg.style.transition = 'background 8s ease-in-out';
-  
-  let isActive = false;
-  setInterval(() => {
-    isActive = !isActive;
-    heroBg.style.background = isActive 
-      ? 'radial-gradient(circle at center, #1e293b 0%, #0f172a 60%, #020617 100%, #000000 100%)'
-      : 'radial-gradient(circle at center, #1e293b 0%, #0f172a 30%, #020617 70%, #000000 100%)';
-  }, 8000);
-}

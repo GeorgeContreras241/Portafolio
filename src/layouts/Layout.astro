@@ -102,11 +102,21 @@ const canonicalURL = new URL(
     <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-row text-white bg-editor-bg overflow-hidden">
-    <Nanvar />
-    <main class="w-full overflow-y-auto overflow-x-hidden mx-auto px-4 sm:px-8 md:px-12 lg:px-18 xl:px-28 2xl:px-32">
-      <slot />
-      <Footer />
-    </main>
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <div class="hero-blob absolute rounded-full blur-3xl" data-color="rgba(59,130,246,0.25)"></div>
+      <div class="hero-blob absolute rounded-full blur-3xl" data-color="rgba(16,185,129,0.20)"></div>
+      <div class="hero-blob absolute rounded-full blur-3xl" data-color="rgba(147,51,234,0.18)"></div>
+    </div>
+    <div class="relative z-10 flex flex-row w-full">
+      <Nanvar />
+      <main class="w-full overflow-y-auto overflow-x-hidden">
+        <div class="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-12 lg:px-18 xl:px-28 2xl:px-40">
+          <slot />
+          <Footer />
+        </div>
+      </main>
+    </div>
+    <script src="../lib/gsap.js"></script>
   </body>
 </html>
 

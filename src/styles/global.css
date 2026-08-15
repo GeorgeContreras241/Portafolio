@@ -12,6 +12,30 @@ html {
 
 }
 
+main {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar personalizado */
+main::-webkit-scrollbar {
+  width: 10px;
+}
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+main::-webkit-scrollbar-thumb {
+  background: var(--color-sidebar-bg);
+  border-radius: 9999px;
+  border: 2px solid var(--color-editor-bg);
+}
+main::-webkit-scrollbar-thumb:hover {
+  background: #2e2e2e;
+}
+main {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-sidebar-bg) transparent;
+}
+
 @theme {
   /* Fondo */
   --color-editor-bg: oklch(0.14 0 0);            /* #111111 */
