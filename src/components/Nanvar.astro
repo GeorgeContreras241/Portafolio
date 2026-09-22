@@ -118,43 +118,67 @@
 </header>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    const scrollContainer = document.querySelector("main");
     const navbarLinks = document.querySelectorAll("header nav a");
-    const sections = Array.from(document.querySelectorAll("section")).filter(section => {
-      const id = section.id;
-      return Array.from(navbarLinks).some(link => link.getAttribute("aria-label") === id);
-    });
+    const sections = Array.from(document.querySelectorAll("section")).filter(
+      (section) => {
+        return Array.from(navbarLinks).some(
+          (link) => link.getAttribute("aria-label") === section.id,
+        );
+      },
+    );
+
+    const setActive = (id) => {
+      navbarLinks.forEach((link) => {
+        const linkTarget = link.getAttribute("aria-label");
+        const isActive = linkTarget === id;
+        const span = link.querySelector("span");
+
+        if (span) {
+          span.style.width = isActive ? "100%" : "";
+        }
+
+        const hasWhite70 = link.classList.contains("text-white/70");
+        if (isActive) {
+          link.classList.add("text-blue-400");
+          if (hasWhite70) link.classList.remove("text-white/70");
+        } else {
+          link.classList.remove("text-blue-400");
+          if (hasWhite70) link.classList.add("text-white/70");
+        }
+      });
+    };
 
     const callback = (entries) => {
       entries.forEach((entry) => {
-        const currentId = entry.target.id;
-        if (entry.isIntersecting && entry.intersectionRatio > 0.2) {
-          navbarLinks.forEach((link) => {
-            const linkTarget = link.getAttribute("aria-label");
-            const isActive = linkTarget === currentId;
-
-            if (isActive) {
-              link.classList.add("[&>span]:w-full", "text-blue-400");
-              link.classList.remove("text-white");
-            } else {
-              link.classList.remove("[&>span]:w-full", "text-blue-400");
-              link.classList.add("text-white");
-            }
-          });
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
         }
       });
     };
 
     const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: '0px',
-      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+      root: scrollContainer,
+      rootMargin: "0px 0px -60% 0px",
+      threshold: 0,
     });
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
+    sections.forEach((section) => observer.observe(section));
 
-    return () => observer.disconnect();
+    setActive("hero");
+
+    const onScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } = scrollContainer;
+      if (scrollTop + clientHeight >= scrollHeight - 10) {
+        setActive(sections[sections.length - 1].id);
+      }
+    };
+    scrollContainer.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      scrollContainer.removeEventListener("scroll", onScroll);
+    };
   });
 </script>
 
