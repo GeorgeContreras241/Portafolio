@@ -1,44 +1,43 @@
 export const projects = [
     {
       id: 1,
-      name: 'Nube y Local con Autenticación WebAuthn',
+      name: 'ClaveVault',
       description:
         'Gestor de contraseñas con autenticación biométrica WebAuthn. Soporta modo local y nube.',
       highlight: 'Autenticación segura sin contraseñas maestras',
       technologies: [
-        { name: 'NextJS', icon: 'NextJS' },
+        { name: 'Next.js', icon: 'Next' },
         { name: 'Tailwind', icon: 'Tailwind' },
         { name: 'MongoDB', icon: 'Mongo' }
       ],
       url: "https://g-clavevault.vercel.app/",
-      github: 'https://github.com/GeorgeContreras241/G--ClaveVault.git',
+      github: 'https://github.com/GeorgeContreras241/G--ClaveVault',
       image: './images/project07.webp',
       state: true
-
     },
     {
       id: 2,
-      name: 'Local - Gestor de Contraseñas',
+      name: 'Calculadora de Techos PVC y Piso SPC',
       description:
-        'Gestor local con encriptación en frontend. Las contraseñas nunca salen del navegador.',
-      highlight: 'Cero dependencias de servidor para datos sensibles',
+        'Aplicación usada en un almacén para calcular de manera rápida las cotizaciones de techo y piso.',
+      highlight: 'Diseño responsivo y moderno con React y Tailwind',
       technologies: [
         { name: 'React', icon: 'React' },
         { name: 'Tailwind', icon: 'Tailwind' }
       ],
-      url: 'https://g-local-password-manager.vercel.app/',
-      github: 'https://github.com/GeorgeContreras241/G-Local-password-manager',
+      url: '',
+      github: 'https://github.com/GeorgeContreras241',
       image: './images/project06.webp',
       state: false
     },
     {
-      id: 4,
+      id: 3,
       name: 'Ward Spy',
       description:
         'App web para consultar stats de League of Legends en tiempo real vía Riot API.',
-      highlight: 'Cache inteligente para evitar rate limits de la API',
+      highlight: 'Caché inteligente para evitar rate limits de la API',
       technologies: [
-        { name: 'NextJS', icon: 'NextJS' },
+        { name: 'Next.js', icon: 'Next' },
         { name: 'Tailwind', icon: 'Tailwind' },
         { name: 'MongoDB', icon: 'Mongo' }
       ],

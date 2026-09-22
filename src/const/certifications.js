@@ -6,17 +6,15 @@ const certifications = [
         date: '2024 - Culminado',
         image: './logo/udec-logo.webp',
         url: undefined,
-        github: undefined,
         state: true
     },
     {
         id: 2,
-        name: 'BootCamp Desarrollo Web Full Stack',
-        description: 'Telento Tech',
+        name: 'Bootcamp Desarrollo Web Full Stack',
+        description: 'Talento Tech',
         date: '2024 - Culminado',
         image: './logo/telento-tech.webp',
         url: 'https://certificados.talentotech.co/?cert=2387056631&fingerprint=y#pdf',
-        github: 'https://github.com/GeorgeContreras241',
         state: true
     }
 ];
