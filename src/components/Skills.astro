@@ -2,6 +2,7 @@
 import Astro_icons from "./icons/Astro_icon.astro";
 import Express from "./icons/Express.astro";
 import GitHub from "./icons/GitHub.astro";
+import Git from "./icons/Git.astro";
 import JavaScript from "./icons/JavaScript.astro";
 import Mongo from "./icons/Mongo.astro";
 import Next from "./icons/Next.js.astro";
@@ -9,6 +10,9 @@ import Node from "./icons/Node.astro";
 import React from "./icons/React.astro";
 import Tailwind from "./icons/Tailwind.astro";
 import Code from "./icons/Code.astro";
+import Docker from "./icons/Docker.astro";
+import Prisma from "./icons/Prisma.astro";
+import OpenCode from "./icons/OpenCode.astro";
 import { frontendSkills } from "../const/frontendSkills.js";
 import { backendSkills } from "../const/backendSkills.js";
 import { toolsSkills } from "../const/devopsSkills.js";
@@ -25,7 +29,11 @@ const getIconComponent = (name: string) => {
     Express,
     Mongo,
     GitHub,
+    Git,
     Code,
+    Docker,
+    Prisma,
+    OpenCode,
   };
 
   return icons[name] || null;
@@ -40,7 +48,7 @@ const sections = [
 
 <section
   id="skills"
-  class="py-10 md:py-16"
+  class="py-10 md:py-20 md:mb-20"
 >
   <div class="text-center mb-10 md:mb-14">
     <h2
@@ -80,6 +88,9 @@ const sections = [
                     <h4 class="text-xs font-medium text-text-default text-center leading-tight group-hover:text-variable transition-colors duration-300">
                       {tech.name}
                     </h4>
+                    {tech.level && (
+                      <span class="text-[9px] text-gray-500 font-mono">{tech.level}</span>
+                    )}
                   </div>
                 </li>
               );

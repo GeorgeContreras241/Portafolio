@@ -2,65 +2,37 @@
 import certifications from "../const/certifications";
 ---
 
-<section
-  class="certificates-section rounded-2xl border border-gray-800/50 overflow-hidden"
->
-  <div
-    class="p-6 border-b border-gray-800/50 bg-gradient-to-r from-editor-bg to-selection-bg/10"
-  >
-    <h3 class="text-lg font-bold text-white flex items-center gap-3">
-      <span
-        class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg"
-      >
-        Educación & Certificaciones
-      </span>
-    </h3>
-    <p class="mt-1 text-gray-400 text-sm">
-      Mi trayectoria académica y formaciones profesionales
-    </p>
-  </div>
+<div class="space-y-2">
+  <h3 class="text-base font-bold text-white flex items-center gap-2 mb-3">
+    <span class="bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg">
+      Educación & Certificaciones
+    </span>
+  </h3>
 
-  <div class="p-4">
-    <ul class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      {
-        certifications?.map((item) => (
-          <li class="group relative p-4 rounded-xl border border-gray-700/50 bg-sidebar-bg/80 hover:border-blue-500/30 transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-blue-500/5">
-            <div class="flex flex-col md:flex-row items-center gap-6">
-              <div class="certificate-logo w-20 h-20 p-3 bg-white/5 rounded-xl border border-gray-700/50 flex items-center justify-center">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  class="w-full h-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div class="certificate-content flex-1 text-center md:text-left">
-                {
-                    item.url ? (
-                        <a href={item.url} target="_blank" rel="noopener noreferrer">
-                            <h4 class="font-bold text-md text-white">
-                                {item.name}
-                            </h4>
-                        </a>
-                    ) : (
-                        <h4 class="font-bold text-md text-white">
-                            {item.name}
-                        </h4>
-                    )
-                }
-                <p class="text-blue-400 mt-1 text-sm">
-                  {item.description}
-                </p>
-                <div class="mt-2 flex items-center justify-center md:justify-start gap-2">
-                  <span class="px-3 py-1 bg-blue-500/10 text-text-default text-xs rounded-full">
-                    {item.date}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
+  <ul class="flex flex-wrap gap-2">
+    {
+      certifications?.map((item) => (
+        <li class="group flex items-center gap-3 px-4 py-3 rounded-lg bg-sidebar-bg/50 border border-white/5 hover:border-white/10 transition-all duration-200">
+          <div class="w-10 h-10 p-1.5 bg-white/5 rounded-md flex items-center justify-center flex-shrink-0">
+            <img
+              src={item.image}
+              alt={item.name}
+              class="w-full h-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="flex flex-col min-w-0">
+            {item.url ? (
+              <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-white hover:text-blue-400 transition-colors leading-tight">
+                {item.name}
+              </a>
+            ) : (
+              <span class="text-sm font-medium text-white leading-tight">{item.name}</span>
+            )}
+            <span class="text-xs text-gray-500">{item.date}</span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
