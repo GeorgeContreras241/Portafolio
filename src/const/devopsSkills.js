@@ -1,18 +1,37 @@
 export const toolsSkills = [
     {
       name: 'Git',
-      icon: 'GitHub'
+      icon: 'Git',
+      level: 'Intermedio'
     },
     {
       name: 'GitHub',
-      icon: 'GitHub'
+      icon: 'GitHub',
+      level: 'Intermedio'
     },
     {
       name: 'VS Code',
-      icon: 'Code'
+      icon: 'Code',
+      level: 'Avanzado'
     },
     {
       name: 'npm',
-      icon: 'Code'
+      icon: 'Code',
+      level: 'Avanzado'
+    },
+    {
+      name: 'Docker',
+      icon: 'Docker',
+      level: 'Básico'
+    },
+    {
+      name: 'Prisma',
+      icon: 'Prisma',
+      level: 'Intermedio'
+    },
+    {
+      name: 'OpenCode',
+      icon: 'OpenCode',
+      level: 'Avanzado'
     }
   ];
