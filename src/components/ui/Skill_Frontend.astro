@@ -1,6 +1,23 @@
 ---
 import { frontendSkills } from "../../const/frontendSkills.js";
+import Astro_icons from "../icons/Astro_icon.astro";
+import Code from "../icons/Code.astro";
+import JavaScript from "../icons/JavaScript.astro";
+import Next from "../icons/Next.js.astro";
+import React from "../icons/React.astro";
+import Tailwind from "../icons/Tailwind.astro";
 
+const getIconComponent = (name: string) => {
+  const icons: Record<string, any> = {
+    React,
+    Next,
+    Astro_icons,
+    JavaScript,
+    Tailwind,
+    Code,
+  };
+  return icons[name] || null;
+};
 ---
 <section>
     <div class="max-w-4xl mx-auto text-center mb-16 md:mb-20">
