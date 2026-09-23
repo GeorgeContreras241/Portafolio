@@ -1,6 +1,6 @@
 ---
 import Footer from "../components/Footer.astro";
-import Nanvar from "../components/Nanvar.astro";
+import Navbar from "../components/Navbar.astro";
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 interface Props {
@@ -108,7 +108,7 @@ const canonicalURL = new URL(
       <div class="hero-blob absolute rounded-full blur-3xl" data-color="rgba(147,51,234,0.18)"></div>
     </div>
     <div class="relative z-10 flex flex-row w-full">
-      <Nanvar />
+      <Navbar />
       <main class="w-full overflow-y-auto overflow-x-hidden">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 md:px-12 lg:px-18 xl:px-28 2xl:px-40">
           <slot />
