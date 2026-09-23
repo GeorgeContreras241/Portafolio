@@ -1,7 +1,7 @@
 const certifications = [
     {
         id: 1,
-        name: 'Tecnología en Desarrollo de Software',
+        name: 'Tecnólogo en Desarrollo de Software',
         description: 'Universidad de Cundinamarca',
         date: '2024 - Culminado',
         image: './logo/udec-logo.webp',
