@@ -1,5 +1,6 @@
 ---
- const { href, title, ariaLabel, classStyle } = Astro.props;
+ const { href, title, classStyle } = Astro.props;
+const ariaLabel = Astro.props["aria-label"] ?? Astro.props.ariaLabel;
 ---
 
 <a
