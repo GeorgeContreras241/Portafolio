@@ -12,7 +12,7 @@ export const projects = [
       ],
       url: "https://g-clavevault.vercel.app/",
       github: 'https://github.com/GeorgeContreras241/G--ClaveVault',
-      image: './images/project07.webp',
+      image: './images/ClaveVault.png',
       state: true
     },
     {
@@ -27,7 +27,7 @@ export const projects = [
       ],
       url: '',
       github: 'https://github.com/GeorgeContreras241',
-      image: './images/project06.webp',
+      image: './images/calculatorAlmoHogar.png',
       state: false
     },
     {
@@ -43,7 +43,7 @@ export const projects = [
       ],
       url: "https://ward-spy.vercel.app/",
       github: 'https://github.com/GeorgeContreras241/Ward-Spy',
-      image: './images/project09.webp',
+      image: './images/WarpSky.png',
       state: true
     }
   ];
