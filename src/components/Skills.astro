@@ -52,18 +52,18 @@ const sections = [
 >
   <div class="text-center mb-10 md:mb-14">
     <h2
-      class="text-xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg mb-4 gsap-title"
+      class="text-xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-variable to-statusbar-bg mb-4"
     >
       Habilidades & Tecnologías
     </h2>
-    <p class="text-text-default/80 text-sm md:text-xl max-w-2xl mx-auto gsap-subtitle">
+    <p class="text-text-default/80 text-sm md:text-xl max-w-2xl mx-auto">
       Tecnologías y herramientas con las que trabajo
     </p>
   </div>
 
   {
     sections.map((section) => (
-      <div class="mb-8 last:mb-0 bg-editor-bg/60 backdrop-blur-sm rounded-xl border border-white/5 overflow-hidden">
+      <div class="mb-8 last:mb-0 bg-editor-bg/90 rounded-xl border border-white/5 overflow-hidden">
         <div class="p-3 border-b border-sidebar-bg/50 bg-editor-bg flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-red-500"></span>
           <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
@@ -80,9 +80,9 @@ const sections = [
             {section.skills.map((tech) => {
               const Icon = getIconComponent(tech.icon);
               return (
-                <li class="group relative p-3 bg-sidebar-bg/60 rounded-lg border border-sidebar-bg/70 hover:border-object-global/30 transition-all duration-300 hover:scale-[1.03]">
+                <li class="group relative p-3 bg-sidebar-bg/60 rounded-lg border border-sidebar-bg/70 hover:border-object-global/30 transition-[transform,border-color,background-color] duration-200 hover:scale-[1.03]">
                   <div class="flex flex-col items-center justify-center gap-2">
-                    <div class="p-2 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-all duration-300">
+                    <div class="p-2 rounded-lg bg-gradient-to-br from-object-global/10 to-keyword/10 group-hover:from-object-global/20 group-hover:to-keyword/20 transition-colors duration-300">
                       {Icon && <Icon class="w-5 h-5 text-object-global group-hover:text-variable transition-colors duration-300" />}
                     </div>
                     <h4 class="text-xs font-medium text-text-default text-center leading-tight group-hover:text-variable transition-colors duration-300">
