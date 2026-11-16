@@ -1,3 +1,7 @@
+import claveVault from '../assets/images/ClaveVault.png';
+import calculatorAlmoHogar from '../assets/images/calculatorAlmoHogar.png';
+import warpSky from '../assets/images/WarpSky.png';
+
 export const projects = [
     {
       id: 1,
@@ -12,7 +16,7 @@ export const projects = [
       ],
       url: "https://g-clavevault.vercel.app/",
       github: 'https://github.com/GeorgeContreras241/G--ClaveVault',
-      image: './images/ClaveVault.png',
+      image: claveVault,
       state: true
     },
     {
@@ -27,7 +31,7 @@ export const projects = [
       ],
       url: '',
       github: 'https://github.com/GeorgeContreras241',
-      image: './images/calculatorAlmoHogar.png',
+      image: calculatorAlmoHogar,
       state: false
     },
     {
@@ -43,7 +47,7 @@ export const projects = [
       ],
       url: "https://ward-spy.vercel.app/",
       github: 'https://github.com/GeorgeContreras241/Ward-Spy',
-      image: './images/WarpSky.png',
+      image: warpSky,
       state: true
     }
   ];

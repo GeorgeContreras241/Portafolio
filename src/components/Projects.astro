@@ -11,6 +11,7 @@ import Mongo from "./icons/Mongo.astro";
 import Next from "./icons/Next.js.astro";
 import Node from "./icons/Node.astro";
 import { projects } from "../const/projects.js";
+import { Image } from "astro:assets";
 
 const getComponentIcon = (name: any) => {
   const icons: any = {
@@ -84,10 +85,12 @@ const techFilters = [
                 </span>
               </div>
               <div class="relative bg-gray-900 aspect-[2/1] overflow-hidden">
-                <img
-                  transition:name="image-project"
+                <Image
                   src={project.image}
                   alt={project.name}
+                  width={800}
+                  format="webp"
+                  quality={80}
                   loading="lazy"
                   decoding="async"
                   class="image w-full h-full object-cover"
