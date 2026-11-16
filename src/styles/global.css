@@ -40,31 +40,66 @@
 html {
   scroll-behavior: smooth;
   font-family: 'Onest', 'Onest Fallback', system-ui, sans-serif;
-
-}
-
-main {
-  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-sidebar-bg) transparent;
 }
 
 /* Scrollbar personalizado */
-main::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 10px;
 }
-main::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background: transparent;
 }
-main::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background: var(--color-sidebar-bg);
   border-radius: 9999px;
   border: 2px solid var(--color-editor-bg);
 }
-main::-webkit-scrollbar-thumb:hover {
+html::-webkit-scrollbar-thumb:hover {
   background: #2e2e2e;
 }
-main {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-sidebar-bg) transparent;
+
+/* Aurora de fondo: degradados estáticos animados con transform (compositor) */
+.hero-aurora {
+  overflow: hidden;
+}
+
+.hero-aurora::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  will-change: transform;
+  background:
+    radial-gradient(circle 20vmax at 24% 32%, rgba(59, 130, 246, 0.35), transparent 100%),
+    radial-gradient(circle 16vmax at 76% 60%, rgba(16, 185, 129, 0.26), transparent 100%),
+    radial-gradient(circle 18vmax at 48% 82%, rgba(147, 51, 234, 0.24), transparent 100%);
+  animation: aurora-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-2%, 1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, -2%, 0) scale(1.06);
+  }
+}
+
+/* En móvil la navbar es fija: deja espacio al saltar a una sección */
+@media (max-width: 767px) {
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-aurora::before {
+    animation: none;
+  }
 }
 
 @theme {

@@ -1,4 +1,4 @@
-<header class="hidden  md:flex items-center pl-2  h-screen">
+<header class="hidden md:flex items-center pl-2 h-screen sticky top-0 shrink-0 self-start">
   <nav class="flex items-center justify-center w-48 h-fit py-6 px-2">
     <div class="flex flex-col gap-1.5">
       <a
@@ -119,7 +119,6 @@
 </header>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const scrollContainer = document.querySelector("main");
     const navbarLinks = document.querySelectorAll("header nav a");
     const sections = Array.from(document.querySelectorAll("section")).filter(
       (section) => {
@@ -128,6 +127,8 @@
         );
       },
     );
+
+    if (!sections.length) return;
 
     const setActive = (id) => {
       navbarLinks.forEach((link) => {
@@ -159,7 +160,7 @@
     };
 
     const observer = new IntersectionObserver(callback, {
-      root: scrollContainer,
+      root: null,
       rootMargin: "0px 0px -60% 0px",
       threshold: 0,
     });
@@ -169,32 +170,32 @@
     setActive("hero");
 
     const onScroll = () => {
-      const { scrollTop, clientHeight, scrollHeight } = scrollContainer;
-      if (scrollTop + clientHeight >= scrollHeight - 10) {
+      const scrollTop = window.scrollY;
+      const viewport = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      if (scrollTop + viewport >= docHeight - 10) {
         setActive(sections[sections.length - 1].id);
       }
     };
-    scrollContainer.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       observer.disconnect();
-      scrollContainer.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
     };
   });
 </script>
 
 <script>
   const mobileNav = document.getElementById("mobile-nav");
-  const scrollContainer = document.querySelector("main");
+  let scrolled = false;
   const applyBlur = () => {
-    const offset = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
-    if (offset > 40) {
-      mobileNav?.classList.add("bg-[#0d101d]/80", "backdrop-blur-md", "shadow-lg");
-    } else {
-      mobileNav?.classList.remove("bg-[#0d101d]/80", "backdrop-blur-md", "shadow-lg");
-    }
+    const next = window.scrollY > 40;
+    if (next === scrolled) return;
+    scrolled = next;
+    mobileNav?.classList.toggle("is-scrolled", next);
   };
-  scrollContainer?.addEventListener("scroll", applyBlur, { passive: true });
+  window.addEventListener("scroll", applyBlur, { passive: true });
   applyBlur();
 </script>
 
@@ -217,6 +218,11 @@
   });
 </script>
 <style>
+  #mobile-nav.is-scrolled {
+    background-color: #0d101d;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  }
+
   .line {
     transform-origin: left;
     transition: all 0.5s;
